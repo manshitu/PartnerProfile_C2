@@ -1,0 +1,821 @@
+OneNoteScreen As screen:
+    Fill: =RGBA(241, 241, 241, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |-
+        =Concurrent(
+            ClearCollect(MyOneNoteBookItems, 'OneNote(Business)'.GetNotebooks()),
+            Set(_selectedTutorial,  {Row: 5, Title: "OneNote", Image: OneNoteLogo16})
+        )
+            
+    Orientation: =If(OneNoteScreen.Width < OneNoteScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= OneNoteScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    CanvasMain_4 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =708
+        Width: =If(IsExpand, 900, 757)
+        X: =If(!IsExpand, 200, 50)
+        Y: =60
+        ZIndex: =7
+
+        DataCardMain_4 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height - 10
+            Width: =757
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            GroupControlTitle_4 As group:
+                Height: =5
+                Width: =5
+                X: =-190
+                Y: =-87
+                ZIndex: =3
+
+                PageTitle_4 As label:
+                    Color: =RGBA(0, 0, 0, 1)
+                    FocusedBorderColor: =PageTitle_4.BorderColor
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Lighter
+                    Height: =35
+                    HoverBorderColor: =PageTitle_4.BorderColor
+                    HoverColor: =PageTitle_4.Color
+                    HoverFill: =PageTitle_4.Fill
+                    PressedBorderColor: =PageTitle_4.BorderColor
+                    PressedColor: =PageTitle_4.Color
+                    PressedFill: =PageTitle_4.Fill
+                    Size: =15
+                    Text: ="OneNote sample"
+                    Width: =607
+                    X: =29
+                    Y: =27
+                    ZIndex: =1
+
+                DescriptionLabel_4 As label:
+                    Color: =RGBA(0, 0, 0, 1)
+                    FocusedBorderColor: =DescriptionLabel_4.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =70
+                    HoverBorderColor: =DescriptionLabel_4.BorderColor
+                    HoverColor: =DescriptionLabel_4.Color
+                    HoverFill: =DescriptionLabel_4.Fill
+                    PressedBorderColor: =DescriptionLabel_4.BorderColor
+                    PressedColor: =DescriptionLabel_4.Color
+                    PressedFill: =DescriptionLabel_4.Fill
+                    Size: =9
+                    Text: ="The OneNote Sample enables an app to enter notes into a specific OneNote Notebook and Section. The user may select the Notebook title and Section title from dropdown menus, and enter the text for the Notes. "
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =682
+                    X: =30
+                    Y: =70
+                    ZIndex: =2
+
+            GroupOneNoteControl As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =14
+
+                LabelOneNoteNoteBook As label:
+                    Color: =RGBA(51, 51, 51, 1)
+                    FocusedBorderColor: =LabelOneNoteNoteBook.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =26
+                    HoverBorderColor: =LabelOneNoteNoteBook.BorderColor
+                    HoverColor: =LabelOneNoteNoteBook.Color
+                    HoverFill: =LabelOneNoteNoteBook.Fill
+                    PressedBorderColor: =LabelOneNoteNoteBook.BorderColor
+                    PressedColor: =LabelOneNoteNoteBook.Color
+                    PressedFill: =LabelOneNoteNoteBook.Fill
+                    Size: =10.5
+                    Text: ="Notebook"
+                    X: =29
+                    Y: =134
+                    ZIndex: =3
+
+                LabelOneNoteSection As label:
+                    Color: =RGBA(51, 51, 51, 1)
+                    FocusedBorderColor: =LabelOneNoteSection.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =26
+                    HoverBorderColor: =LabelOneNoteSection.BorderColor
+                    HoverColor: =LabelOneNoteSection.Color
+                    HoverFill: =LabelOneNoteSection.Fill
+                    PressedBorderColor: =LabelOneNoteSection.BorderColor
+                    PressedColor: =LabelOneNoteSection.Color
+                    PressedFill: =LabelOneNoteSection.Fill
+                    Size: =10.5
+                    Text: ="Section"
+                    X: =29
+                    Y: =211
+                    ZIndex: =5
+
+                LabelOneNoteNotes As label:
+                    Color: =RGBA(51, 51, 51, 1)
+                    FocusedBorderColor: =LabelOneNoteNotes.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =26
+                    HoverBorderColor: =LabelOneNoteNotes.BorderColor
+                    HoverColor: =LabelOneNoteNotes.Color
+                    HoverFill: =LabelOneNoteNotes.Fill
+                    PressedBorderColor: =LabelOneNoteNotes.BorderColor
+                    PressedColor: =LabelOneNoteNotes.Color
+                    PressedFill: =LabelOneNoteNotes.Fill
+                    Size: =10.5
+                    Text: ="Notes"
+                    X: =29
+                    Y: =295
+                    ZIndex: =7
+
+                TextInputOneNoteNotes As text:
+                    AccessibleLabel: ="OneNote notes"
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    BorderThickness: =1
+                    Clear: =true
+                    Color: =RGBA(51, 51, 51, 1)
+                    Default: =
+                    FocusedBorderColor: =TextInputOneNoteNotes.BorderColor
+                    Height: =121
+                    HoverFill: =RGBA(255, 255, 255, 1)
+                    Mode: =TextMode.MultiLine
+                    PressedBorderColor: =TextInputOneNoteNotes.HoverBorderColor
+                    PressedColor: =TextInputOneNoteNotes.Color
+                    PressedFill: =TextInputOneNoteNotes.Fill
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Reset: =ResetOneNoteNotesContent
+                    Size: =10.5
+                    Width: =577
+                    X: =35
+                    Y: =330
+                    ZIndex: =8
+
+                ButtonOneNoteCancel As button:
+                    BorderColor: =ColorFade(ButtonOneNoteCancel.Fill, -15%)
+                    DisplayMode: =
+                    Fill: =RGBA(116, 39, 116, 1)
+                    FocusedBorderColor: =ButtonOneNoteCancel.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =32
+                    HoverBorderColor: =ColorFade(ButtonOneNoteCancel.BorderColor, 20%)
+                    HoverColor: =ButtonOneNoteCancel.Color
+                    HoverFill: =ColorFade(ButtonOneNoteCancel.Fill, 20%)
+                    OnSelect: |-
+                        =UpdateContext({ ResetOneNoteNotesContent: true }); UpdateContext({ ResetOneNoteNotesContent: false });UpdateContext({ SavingStatePrompt: "" })
+                    PressedBorderColor: =ButtonOneNoteCancel.Fill
+                    PressedColor: =ButtonOneNoteCancel.Fill
+                    PressedFill: =ButtonOneNoteCancel.Color
+                    RadiusBottomLeft: =1
+                    RadiusBottomRight: =1
+                    RadiusTopLeft: =1
+                    RadiusTopRight: =1
+                    Size: =10.5
+                    Text: ="Cancel"
+                    Width: =111
+                    X: =36
+                    Y: =507
+                    ZIndex: =9
+
+                ButtonOneNoteOK As button:
+                    BorderColor: =ColorFade(ButtonOneNoteOK.Fill, -15%)
+                    DisplayMode: |-
+                        =If( !IsBlank(DropdownOneNoteNotebook.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BKey')
+                            And !IsBlank(DropdownOneNoteSection.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BpagesUrl')
+                            And !IsBlank(TextInputOneNoteNotes.Text), 
+                            DisplayMode.Edit, DisplayMode.Disabled)
+                    Fill: =RGBA(116, 39, 116, 1)
+                    FocusedBorderColor: =ButtonOneNoteOK.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =32
+                    HoverBorderColor: =ColorFade(ButtonOneNoteOK.BorderColor, 20%)
+                    HoverColor: =ButtonOneNoteOK.Color
+                    HoverFill: =ColorFade(ButtonOneNoteOK.Fill, 20%)
+                    OnSelect: |-
+                        =UpdateContext(
+                            { SavingStatePrompt: "Saving note." }
+                        );
+                        'OneNote(Business)'.CreatePageInSection(DropdownOneNoteNotebook.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BKey', DropdownOneNoteSection.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BpagesUrl', TextInputOneNoteNotes.Text);
+                        UpdateContext(
+                            { SavingStatePrompt: "Note saved." }
+                        )
+                    PressedBorderColor: =ButtonOneNoteOK.Fill
+                    PressedColor: =ButtonOneNoteOK.Fill
+                    PressedFill: =ButtonOneNoteOK.Color
+                    RadiusBottomLeft: =1
+                    RadiusBottomRight: =1
+                    RadiusTopLeft: =1
+                    RadiusTopRight: =1
+                    Size: =10.5
+                    Text: ="OK"
+                    Width: =111
+                    X: =185
+                    Y: =507
+                    ZIndex: =10
+
+                LabelOneNoteSavingStatePrompt As label:
+                    Color: =RGBA(116, 39, 116, 1)
+                    FocusedBorderColor: =LabelOneNoteSavingStatePrompt.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =26
+                    HoverBorderColor: =LabelOneNoteSavingStatePrompt.BorderColor
+                    HoverColor: =LabelOneNoteSavingStatePrompt.Color
+                    HoverFill: =LabelOneNoteSavingStatePrompt.Fill
+                    PressedBorderColor: =LabelOneNoteSavingStatePrompt.BorderColor
+                    PressedColor: =LabelOneNoteSavingStatePrompt.Color
+                    PressedFill: =LabelOneNoteSavingStatePrompt.Fill
+                    Size: =10.5
+                    Text: =SavingStatePrompt
+                    Width: =300
+                    X: =29
+                    Y: =475
+                    ZIndex: =11
+
+                DropdownOneNoteSection As dropdown:
+                    AccessibleLabel: ="OneNote section"
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(255, 255, 255, 1)
+                    ChevronFill: =RGBA(123, 123, 123, 1)
+                    ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+                    ChevronHoverFill: =RGBA(51, 51, 51, 1)
+                    Color: =RGBA(51, 51, 51, 1)
+                    FocusedBorderColor: =RGBA(164, 164, 164, 1)
+                    Height: =32
+                    HoverBorderColor: =RGBA(164, 164, 164, 1)
+                    HoverColor: =RGBA(51, 51, 51, 1)
+                    HoverFill: =RGBA(244,244,244,1)
+                    Items: =If(!IsBlank(DropdownOneNoteNotebook.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BKey'), 'OneNote(Business)'.GetSectionsInNotebook(DropdownOneNoteNotebook.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BKey').value)
+                    OnSelect: =
+                    PressedBorderColor: =RGBA(171, 171, 171, 1)
+                    PressedColor: =RGBA(51, 51, 51, 1)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    SelectionColor: =RGBA(51, 51, 51, 1)
+                    SelectionFill: =RGBA(244, 244, 244, 1)
+                    Size: =10.5
+                    Width: =260
+                    X: =36
+                    Y: =246
+                    ZIndex: =12
+
+                DropdownOneNoteNotebook As dropdown:
+                    AccessibleLabel: ="OneNote notebook"
+                    BorderColor: =RGBA(166, 166, 166, 1)
+                    BorderThickness: =1
+                    ChevronBackground: =RGBA(255, 255, 255, 1)
+                    ChevronFill: =RGBA(123, 123, 123, 1)
+                    ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+                    ChevronHoverFill: =RGBA(51, 51, 51, 1)
+                    Color: =RGBA(51, 51, 51, 1)
+                    FocusedBorderColor: =RGBA(164, 164, 164, 1)
+                    Height: =32
+                    HoverBorderColor: =RGBA(164, 164, 164, 1)
+                    HoverColor: =RGBA(51, 51, 51, 1)
+                    HoverFill: =RGBA(244,244,244,1)
+                    Items: =MyOneNoteBookItems
+                    OnSelect: =
+                    PressedBorderColor: =RGBA(171, 171, 171, 1)
+                    PressedColor: =RGBA(51, 51, 51, 1)
+                    PressedFill: =RGBA(0, 0, 0, 0)
+                    SelectionColor: =RGBA(51, 51, 51, 1)
+                    SelectionFill: =RGBA(244, 244, 244, 1)
+                    Size: =10.5
+                    Width: =260
+                    X: =36
+                    Y: =167
+                    ZIndex: =13
+
+    Video1_3 As videoPlayback:
+        FocusedBorderColor: =Video1_3.BorderColor
+        Height: =214
+        Media: |-
+            ="https://www.youtube.com/watch?v=D6kmeM0UFH0"
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =300+0
+        ZIndex: =16
+
+    Label1_6 As label:
+        FocusedBorderColor: =Label1_6.BorderColor
+        Height: =95
+        HoverBorderColor: =Label1_6.BorderColor
+        HoverColor: =Label1_6.Color
+        HoverFill: =Label1_6.Fill
+        PaddingBottom: =0
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_6.BorderColor
+        PressedColor: =Label1_6.Color
+        PressedFill: =Label1_6.Fill
+        Size: =11
+        Text: ="We have many resources to help you learn about PowerApps, including sample applications, video tutorials, articles and other references. Links to these resources can be found below. "
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =170+0
+        ZIndex: =17
+
+    Label1_7 As label:
+        FocusedBorderColor: =Label1_7.BorderColor
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =Label1_7.BorderColor
+        HoverColor: =Label1_7.Color
+        HoverFill: =Label1_7.Fill
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_7.BorderColor
+        PressedColor: =Label1_7.Color
+        PressedFill: =Label1_7.Fill
+        Size: =12
+        Text: ="How-to Video"
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =267+0
+        ZIndex: =18
+
+    Label2_3 As label:
+        FocusedBorderColor: =Label2_3.BorderColor
+        Height: =58
+        HoverBorderColor: =Label2_3.BorderColor
+        HoverColor: =Label2_3.Color
+        HoverFill: =Label2_3.Fill
+        OnSelect: |-
+            =Launch("https://www.youtube.com/watch?v=uwG1Og4f0Vo")
+        PressedBorderColor: =Label2_3.BorderColor
+        PressedColor: =Label2_3.Color
+        PressedFill: =Label2_3.Fill
+        Size: =10
+        TabIndex: =0
+        Text: |-
+            ="https://www.youtube.com/watch?v=D6kmeM0UFH0"
+        Tooltip: ="Select to launch video in new tab"
+        Underline: =true
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =514+0
+        ZIndex: =19
+
+    GroupBackground_4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =26
+
+        WelcomeScreenTitleBackground_4 As rectangle:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            DisabledFill: =WelcomeScreenTitleBackground_4.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =WelcomeScreenTitleBackground_4.BorderColor
+            Height: =60
+            HoverFill: =WelcomeScreenTitleBackground_4.Fill
+            PressedFill: =WelcomeScreenTitleBackground_4.Fill
+            Width: =1366
+            ZIndex: =4
+
+        WelcomeScreenTitle_4 As label:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =WelcomeScreenTitle_4.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =WelcomeScreenTitle_4.BorderColor
+            HoverColor: =WelcomeScreenTitle_4.Color
+            HoverFill: =WelcomeScreenTitle_4.Fill
+            LineHeight: =0
+            PressedBorderColor: =WelcomeScreenTitle_4.BorderColor
+            PressedColor: =WelcomeScreenTitle_4.Color
+            PressedFill: =WelcomeScreenTitle_4.Fill
+            Size: =18
+            Text: ="PowerApps Training"
+            Width: =350
+            X: =14
+            Y: =14
+            ZIndex: =5
+
+        ImagePowerAppsLogo_4 As image:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =ImagePowerAppsLogo_4.BorderColor
+            Height: =48
+            HoverBorderColor: =ColorFade(ImagePowerAppsLogo_4.BorderColor, 20%)
+            HoverFill: =ColorFade(ImagePowerAppsLogo_4.Fill, 20%)
+            Image: =PowerApps
+            PressedBorderColor: =ColorFade(ImagePowerAppsLogo_4.BorderColor, -20%)
+            PressedFill: =ColorFade(ImagePowerAppsLogo_4.Fill, -20%)
+            Width: =48
+            X: =1312
+            Y: =6
+            ZIndex: =6
+
+    GroupDetailsPanel_4 As group:
+        Height: =5
+        Width: =5
+        X: =-906
+        Y: =-20
+        ZIndex: =42
+
+        RectangleDetailsBackground_4 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0.16)
+            BorderThickness: =1
+            DisabledFill: =RectangleDetailsBackground_4.Fill
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =RectangleDetailsBackground_4.BorderColor
+            Height: =708
+            HoverFill: =RectangleDetailsBackground_4.Fill
+            PressedFill: =RectangleDetailsBackground_4.Fill
+            Width: =420
+            X: =946
+            Y: =60
+            ZIndex: =8
+
+        LabelDetalisTitle_4 As label:
+            FocusedBorderColor: =LabelDetalisTitle_4.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Lighter
+            HoverBorderColor: =LabelDetalisTitle_4.BorderColor
+            HoverColor: =LabelDetalisTitle_4.Color
+            HoverFill: =LabelDetalisTitle_4.Fill
+            PressedBorderColor: =LabelDetalisTitle_4.BorderColor
+            PressedColor: =LabelDetalisTitle_4.Color
+            PressedFill: =LabelDetalisTitle_4.Fill
+            Size: =15
+            Text: ="Details"
+            X: =975
+            Y: =82
+            ZIndex: =9
+
+        LabelDetailsSteps_4 As label:
+            Color: =If(IsShowResourcesTab, RGBA(102,102,102,1), RGBA(51,51,51,1))
+            FocusedBorderColor: =LabelDetailsSteps_4.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsSteps_4.BorderColor
+            HoverColor: =LabelDetailsSteps_4.Color
+            HoverFill: =LabelDetailsSteps_4.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: false})
+            PressedBorderColor: =LabelDetailsSteps_4.BorderColor
+            PressedColor: =LabelDetailsSteps_4.Color
+            PressedFill: =LabelDetailsSteps_4.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Steps"
+            Width: =59
+            X: =979
+            Y: =130
+            ZIndex: =10
+
+        LabelDetailsResources_4 As label:
+            Align: =Align.Center
+            Color: =If(IsShowResourcesTab, RGBA(51,51,51,1), RGBA(102,102,102,1))
+            FocusedBorderColor: =LabelDetailsResources_4.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsResources_4.BorderColor
+            HoverColor: =LabelDetailsResources_4.Color
+            HoverFill: =LabelDetailsResources_4.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: true})
+            PressedBorderColor: =LabelDetailsResources_4.BorderColor
+            PressedColor: =LabelDetailsResources_4.Color
+            PressedFill: =LabelDetailsResources_4.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Resources"
+            Width: =98
+            X: =1038
+            Y: =130
+            ZIndex: =11
+
+        RectangleTab1_4 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab1_4.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab1_4.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab1_4.Fill
+            PressedFill: =RectangleTab1_4.Fill
+            Visible: =!IsShowResourcesTab
+            Width: =LabelDetailsSteps_4.Width - 15
+            X: =983
+            Y: =168
+            ZIndex: =12
+
+        RectangleTab2_4 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab2_4.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab2_4.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab2_4.Fill
+            PressedFill: =RectangleTab2_4.Fill
+            Visible: =IsShowResourcesTab
+            Width: =LabelDetailsResources_4.Width - 23
+            X: =LabelDetailsResources_4.X + 13
+            Y: =168
+            ZIndex: =13
+
+        HtmlTextFunctionPanelSteps_4 As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =596
+            HoverBorderColor: =HtmlTextFunctionPanelSteps_4.BorderColor
+            HtmlText: |-
+                ="
+                <div style='margin: 0 0 0 20px; font-size: 12pt !important; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                    <div style=""width: 85%; margin: 10px 0 20px;"">Follow the steps outlined below to implement OneNote capabilities in your PowerApp: </div>
+                  
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >1</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add the data connection, select OneNote (Business), click connect, and if prompted to sign in, enter your work account.<br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                    
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >2</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Notebook
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >3</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Dropdown control on the form and name it as <strong>DropdownOneNoteNotebook</strong>, then set the &ldquo;<strong>Items</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                'OneNote(Business)'.GetNotebooks()
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >4</div>
+                    <div style=""float: left; width: 75%; "">
+                        Set the &ldquo;<strong>Value</strong>&rdquo; property of the <strong>DropdownOneNoteNotebook</strong> to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                FileName
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >5</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control on the form and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Section
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >6</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Dropdown control to the form and name it as <strong>DropdownOneNoteSection</strong>, then set the &ldquo;<strong>Items</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                If(
+                 !IsBlank(
+                  DropdownOneNoteNotebook.Selected.Key),
+                  'OneNote(Business)'.GetSectionsInNotebook(
+                    DropdownOneNoteNotebook.Selected.Key
+                  ).value)
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >7</div>
+                    <div style=""float: left; width: 75%; "">
+                        Set  the &ldquo;<strong>Value</strong>&rdquo; property of the <strong>DropdownOneNoteSection</strong> to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Name
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                    
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >8</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Notes
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >9</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Text input control on the form and name it as <strong>TextInputOneNoteNotes</strong>, then set the &ldquo;<strong>Mode</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Multiline
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                    
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >10</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a button and name it as <strong>ButtonOneNoteOK</strong>. Set the &ldquo;<strong>Text</strong>&rdquo; property to <em>&quot;OK&quot;</em> and set the &ldquo;<strong>DisplayMode</strong>&rdquo; property to: <br /> <br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                If(
+                 !IsBlank(
+                  DropdownOneNoteNotebook.Selected.Key)
+                 And !IsBlank(
+                  DropdownOneNoteSection.Selected.pagesUrl)
+                 And !IsBlank(
+                  TextInputOneNoteNotes.Text), 
+                 DisplayMode.Edit,
+                 DisplayMode.Disabled)
+                            </pre>
+                        </em>          
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >11</div>
+                    <div style=""float: left; width: 75%; "">
+                        Set the &ldquo;<strong>OnSelect</strong>&rdquo; property of the <strong>ButtonOneNoteOK</strong> to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                'OneNote(Business)'.CreatePageInSection(
+                 DropdownOneNoteNotebook.Selected.Key, 
+                 DropdownOneNoteSection.Selected.pagesUrl,
+                 TextInputOneNoteNotes.Text)
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >12</div>
+                    <div style=""float: left; width: 75%; "">
+                        Now you can save and run your PowerApp.<br /><br /><br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                </div>
+                
+                "
+            PressedBorderColor: =HtmlTextFunctionPanelSteps_4.BorderColor
+            Visible: =!IsShowResourcesTab
+            Width: =420
+            X: =945
+            Y: =170
+            ZIndex: =14
+
+        HtmlTextFunctionPanelResources_4 As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =195
+            HoverBorderColor: =HtmlTextFunctionPanelResources_4.BorderColor
+            HtmlText: |-
+                ="
+                <div style='margin: 0 0 0 20px; font-size: 12pt; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                    
+                    <div style=""margin: 20px 0; font-weight: bold;"">Support &amp; Resources Links</div>
+                    <ul> 
+                        <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/add-configure-controls'>Add and configure a control in PowerApps</a></li>
+                        <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/add-data-connection'>Add a data connection in PowerApps</a></li>
+                        <li><a href='https://docs.microsoft.com/en-us/connectors/onenote/'>Connect to OneNote from PowerApps</a></li>
+                    </ul>
+                </div>"
+            PressedBorderColor: =HtmlTextFunctionPanelResources_4.BorderColor
+            Visible: =IsShowResourcesTab
+            Width: =420
+            X: =946
+            Y: =572
+            ZIndex: =15
+
+    GroupNavigation_4 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =45
+
+        GalleryNavigation_4 As gallery.galleryVertical:
+            DisabledBorderColor: =GalleryNavigation_4.BorderColor
+            DisabledFill: =GalleryNavigation_4.Fill
+            Fill: =RGBA(0,0,0,0)
+            HoverBorderColor: =GalleryNavigation_4.BorderColor
+            HoverFill: =GalleryNavigation_4.Fill
+            Items: =NavigationMenu
+            Layout: =Layout.Vertical
+            LoadingSpinnerColor: =GalleryNavigation_4.BorderColor
+            OnSelect: |-
+                =Set(_selectedTutorial, ThisItem);
+                If(
+                    ThisItem.Row = 1, Navigate(WelcomeScreen, BorderStyle.None),
+                    ThisItem.Row = 2, Navigate(AddPartnerDetails, BorderStyle.None),
+                    ThisItem.Row = 3, Navigate(PlannerScreen, BorderStyle.None),
+                    ThisItem.Row = 4, Navigate(OutlookScreen, BorderStyle.None),
+                    ThisItem.Row = 5, Navigate(OneNoteScreen, BorderStyle.None),
+                    ThisItem.Row = 6, Navigate(PopUpLightBoxScreen, BorderStyle.None)
+                );
+            PressedBorderColor: =GalleryNavigation_4.BorderColor
+            PressedFill: =GalleryNavigation_4.Fill
+            ShowScrollbar: =false
+            TemplateFill: =If(ThisItem.Row = _selectedTutorial.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))
+            TemplatePadding: =0
+            TemplateSize: =42
+            Width: =If(IsExpand, 50, 200)
+            X: =0+0
+            Y: =109+0
+            ZIndex: =1
+
+            Image1_4 As image:
+                FocusedBorderColor: =Image1_4.BorderColor
+                Height: =Parent.TemplateHeight
+                HoverBorderColor: =ColorFade(Image1_4.BorderColor, 20%)
+                HoverFill: =ColorFade(Image1_4.Fill, 20%)
+                Image: =ThisItem.Image
+                OnSelect: =Select(Parent)
+                PaddingBottom: =12
+                PaddingTop: =12
+                PressedBorderColor: =ColorFade(Image1_4.BorderColor, -20%)
+                PressedFill: =ColorFade(Image1_4.Fill, -20%)
+                Width: =Image1_4.Height - 10
+                X: =15
+                ZIndex: =1
+
+            Label4_4 As label:
+                FocusedBorderColor: =Label4_4.BorderColor
+                FocusedBorderThickness: =2
+                Height: =42
+                HoverBorderColor: =Label4_4.BorderColor
+                HoverColor: =Label4_4.Color
+                HoverFill: =Label4_4.Fill
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =Label4_4.BorderColor
+                PressedColor: =Label4_4.Color
+                PressedFill: =Label4_4.Fill
+                Size: =10
+                TabIndex: =0
+                Text: =ThisItem.Title
+                X: =50
+                ZIndex: =2
+
+            Rectangle1_4 As rectangle:
+                DisabledFill: =Rectangle1_4.Fill
+                Fill: =RGBA(116, 39, 116, 1)
+                FocusedBorderColor: =Rectangle1_4.BorderColor
+                Height: =20
+                HoverFill: =Rectangle1_4.Fill
+                OnSelect: =Select(Parent)
+                PressedFill: =Rectangle1_4.Fill
+                Visible: =ThisItem.Row = _selectedTutorial.Row
+                Width: =4
+                X: =11
+                Y: =11
+                ZIndex: =3
+
+        iconHamburgerMenu_10 As icon.Hamburger:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledFill: =iconHamburgerMenu_10.Fill
+            FocusedBorderColor: =iconHamburgerMenu_10.BorderColor
+            Height: =16
+            HoverBorderColor: =ColorFade(iconHamburgerMenu_10.BorderColor, 20%)
+            HoverColor: =ColorFade(iconHamburgerMenu_10.Color, 20%)
+            HoverFill: =iconHamburgerMenu_10.Fill
+            Icon: =Icon.Hamburger
+            OnSelect: =Set(IsExpand, !IsExpand)
+            PressedBorderColor: =ColorFade(iconHamburgerMenu_10.BorderColor, -20%)
+            PressedColor: =ColorFade(iconHamburgerMenu_10.Color, -20%)
+            PressedFill: =iconHamburgerMenu_10.Fill
+            TabIndex: =0
+            Width: =16
+            X: =24+0
+            Y: =76+0
+            ZIndex: =2
+
+        Rectangle2_1 As rectangle:
+            DisabledFill: =Rectangle2_1.Fill
+            Fill: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Rectangle2_1.BorderColor
+            Height: =707
+            HoverFill: =Rectangle2_1.Fill
+            PressedFill: =Rectangle2_1.Fill
+            Width: =1
+            X: =CanvasMain_4.X
+            Y: =61+0
+            ZIndex: =3
+

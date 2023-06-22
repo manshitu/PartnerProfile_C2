@@ -1,0 +1,710 @@
+PopUpLightBoxScreen As screen:
+    Fill: =RGBA(241, 241, 241, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |-
+        =Set(_selectedTutorial, {Row: 6, Title: "Pop-up lightbox", Image: PopUpIcon})
+    Orientation: =If(PopUpLightBoxScreen.Width < PopUpLightBoxScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= PopUpLightBoxScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    CanvasMain_5 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =708
+        Width: =If(IsExpand, 900, 757)
+        X: =If(!IsExpand, 200, 50)
+        Y: =60
+        ZIndex: =8
+
+        DataCardMain_5 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            PopupLightboxControl As group:
+                Height: =5
+                Width: =5
+                X: =-189
+                Y: =-60
+                ZIndex: =5
+
+                ButtonShowPopupLightbox As button:
+                    BorderColor: =ColorFade(ButtonShowPopupLightbox.Fill, -15%)
+                    Fill: =RGBA(116, 39, 116, 1)
+                    FocusedBorderColor: =ButtonShowPopupLightbox.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =32
+                    HoverBorderColor: =ColorFade(ButtonShowPopupLightbox.BorderColor, 20%)
+                    HoverColor: =ButtonShowPopupLightbox.Color
+                    HoverFill: =ColorFade(ButtonShowPopupLightbox.Fill, 20%)
+                    OnSelect: |-
+                        =UpdateContext({ShowPopupLightBox:true})
+                    PressedBorderColor: =ButtonShowPopupLightbox.Fill
+                    PressedColor: =ButtonShowPopupLightbox.Fill
+                    PressedFill: =ButtonShowPopupLightbox.Color
+                    RadiusBottomLeft: =1
+                    RadiusBottomRight: =1
+                    RadiusTopLeft: =1
+                    RadiusTopRight: =1
+                    Size: =10.5
+                    Text: ="Button"
+                    Width: =80
+                    X: =35
+                    Y: =165
+                    ZIndex: =3
+
+                RectangleOverlay As rectangle:
+                    DisabledFill: =RectangleOverlay.Fill
+                    Fill: =RGBA(0, 0, 0, .6)
+                    FocusedBorderColor: =RectangleOverlay.BorderColor
+                    FocusedBorderThickness: =4
+                    Height: =Parent.Height
+                    HoverFill: =RectangleOverlay.Fill
+                    PressedFill: =RectangleOverlay.Fill
+                    Visible: =ShowPopupLightBox
+                    Width: =Parent.Width
+                    ZIndex: =4
+
+                RectanglePopupBox As rectangle:
+                    BorderColor: =RGBA(204, 204, 204, 1)
+                    BorderThickness: =1
+                    DisabledFill: =RectanglePopupBox.Fill
+                    Fill: =RGBA(255, 255, 255, 1)
+                    FocusedBorderColor: =RectanglePopupBox.BorderColor
+                    FocusedBorderThickness: =4
+                    Height: =400
+                    HoverFill: =RectanglePopupBox.Fill
+                    PressedFill: =RectanglePopupBox.Fill
+                    Visible: =ShowPopupLightBox
+                    Width: =400
+                    X: =175
+                    Y: =155
+                    ZIndex: =6
+
+                ButtonClose As button:
+                    BorderColor: =ColorFade(ButtonClose.Fill, -15%)
+                    Fill: =RGBA(116, 39, 116, 1)
+                    FocusedBorderColor: =ButtonClose.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =32
+                    HoverBorderColor: =ColorFade(ButtonClose.BorderColor, 20%)
+                    HoverColor: =ButtonClose.Color
+                    HoverFill: =ColorFade(ButtonClose.Fill, 20%)
+                    OnSelect: |-
+                        =UpdateContext({ShowPopupLightBox:false})
+                    PressedBorderColor: =ButtonClose.Fill
+                    PressedColor: =ButtonClose.Fill
+                    PressedFill: =ButtonClose.Color
+                    RadiusBottomLeft: =1
+                    RadiusBottomRight: =1
+                    RadiusTopLeft: =1
+                    RadiusTopRight: =1
+                    Size: =10.5
+                    Text: ="Close"
+                    Visible: =ShowPopupLightBox
+                    Width: =80
+                    X: =333
+                    Y: =505
+                    ZIndex: =7
+
+                iconClose As icon.Cancel:
+                    AccessibleLabel: ="Close pop-up lightbox"
+                    Color: =RGBA(116, 39, 116, 1)
+                    DisabledFill: =iconClose.Fill
+                    FocusedBorderColor: =iconClose.BorderColor
+                    FocusedBorderThickness: =4
+                    Height: =20
+                    HoverBorderColor: =ColorFade(iconClose.BorderColor, 20%)
+                    HoverColor: =ColorFade(iconClose.Color, 20%)
+                    HoverFill: =iconClose.Fill
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =UpdateContext({ShowPopupLightBox:false})
+                    PressedBorderColor: =ColorFade(iconClose.BorderColor, -20%)
+                    PressedColor: =ColorFade(iconClose.Color, -20%)
+                    PressedFill: =iconClose.Fill
+                    Visible: =ShowPopupLightBox
+                    Width: =20
+                    X: =533
+                    Y: =177
+                    ZIndex: =8
+
+                LabelBoxTitle As label:
+                    FocusedBorderColor: =LabelBoxTitle.BorderColor
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    Height: =31
+                    HoverBorderColor: =LabelBoxTitle.BorderColor
+                    HoverColor: =LabelBoxTitle.Color
+                    HoverFill: =LabelBoxTitle.Fill
+                    PressedBorderColor: =LabelBoxTitle.BorderColor
+                    PressedColor: =LabelBoxTitle.Color
+                    PressedFill: =LabelBoxTitle.Fill
+                    Text: ="Sample Content Here"
+                    Visible: =ShowPopupLightBox
+                    Width: =273
+                    X: =236
+                    Y: =264
+                    ZIndex: =9
+
+                LabelBoxContent As label:
+                    FocusedBorderColor: =LabelBoxContent.BorderColor
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    Height: =68
+                    HoverBorderColor: =LabelBoxContent.BorderColor
+                    HoverColor: =LabelBoxContent.Color
+                    HoverFill: =LabelBoxContent.Fill
+                    PressedBorderColor: =LabelBoxContent.BorderColor
+                    PressedColor: =LabelBoxContent.Color
+                    PressedFill: =LabelBoxContent.Fill
+                    Size: =10
+                    Text: ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis venenatis ac enim vel porta."
+                    Visible: =ShowPopupLightBox
+                    Width: =282
+                    X: =236
+                    Y: =315
+                    ZIndex: =10
+
+            GroupControlTitle_5 As group:
+                Height: =5
+                Width: =5
+                X: =-189
+                Y: =-60
+                ZIndex: =11
+
+                PageTitle_5 As label:
+                    Color: =RGBA(0, 0, 0, 1)
+                    FocusedBorderColor: =PageTitle_5.BorderColor
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Lighter
+                    Height: =39
+                    HoverBorderColor: =PageTitle_5.BorderColor
+                    HoverColor: =PageTitle_5.Color
+                    HoverFill: =PageTitle_5.Fill
+                    PressedBorderColor: =PageTitle_5.BorderColor
+                    PressedColor: =PageTitle_5.Color
+                    PressedFill: =PageTitle_5.Fill
+                    Size: =15
+                    Text: ="Pop-up lightbox sample"
+                    Width: =607
+                    X: =29
+                    Y: =26
+                    ZIndex: =1
+
+                DescriptionLabel_5 As label:
+                    Color: =RGBA(0, 0, 0, 1)
+                    FocusedBorderColor: =DescriptionLabel_5.BorderColor
+                    Font: =Font.'Segoe UI'
+                    Height: =77
+                    HoverBorderColor: =DescriptionLabel_5.BorderColor
+                    HoverColor: =DescriptionLabel_5.Color
+                    HoverFill: =DescriptionLabel_5.Fill
+                    PressedBorderColor: =DescriptionLabel_5.BorderColor
+                    PressedColor: =DescriptionLabel_5.Color
+                    PressedFill: =DescriptionLabel_5.Fill
+                    Size: =9
+                    Text: |-
+                        ="The Pop-up lightbox control enables an app to present a “popup” window to a user in response to a user click on a Call To Action (CTA). The popup window may contain text or graphics for display to the user. The user may dismiss the popup window after viewing the content. 
+                        
+                        Click the button to see the Pop-up lightbox.
+                        "
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =682
+                    X: =30
+                    Y: =75
+                    ZIndex: =2
+
+    Video1_4 As videoPlayback:
+        FocusedBorderColor: =Video1_4.BorderColor
+        Height: =214
+        Media: |-
+            ="https://www.youtube.com/watch?v=17L2w3kyiFE"
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =300+0
+        ZIndex: =17
+
+    Label1_8 As label:
+        FocusedBorderColor: =Label1_8.BorderColor
+        Height: =95
+        HoverBorderColor: =Label1_8.BorderColor
+        HoverColor: =Label1_8.Color
+        HoverFill: =Label1_8.Fill
+        PaddingBottom: =0
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_8.BorderColor
+        PressedColor: =Label1_8.Color
+        PressedFill: =Label1_8.Fill
+        Size: =11
+        Text: ="We have many resources to help you learn about PowerApps, including sample applications, video tutorials, articles and other references. Links to these resources can be found below. "
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =170+0
+        ZIndex: =18
+
+    Label1_9 As label:
+        FocusedBorderColor: =Label1_9.BorderColor
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =Label1_9.BorderColor
+        HoverColor: =Label1_9.Color
+        HoverFill: =Label1_9.Fill
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_9.BorderColor
+        PressedColor: =Label1_9.Color
+        PressedFill: =Label1_9.Fill
+        Size: =12
+        Text: ="How-to Video"
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =267+0
+        ZIndex: =19
+
+    Label2_4 As label:
+        FocusedBorderColor: =Label2_4.BorderColor
+        Height: =58
+        HoverBorderColor: =Label2_4.BorderColor
+        HoverColor: =Label2_4.Color
+        HoverFill: =Label2_4.Fill
+        OnSelect: |-
+            =Launch("https://www.youtube.com/watch?v=uwG1Og4f0Vo")
+        PressedBorderColor: =Label2_4.BorderColor
+        PressedColor: =Label2_4.Color
+        PressedFill: =Label2_4.Fill
+        Size: =10
+        TabIndex: =0
+        Text: |-
+            ="https://www.youtube.com/watch?v=17L2w3kyiFE"
+        Tooltip: ="Select to launch video in new tab"
+        Underline: =true
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =514+0
+        ZIndex: =20
+
+    GroupNavigation_5 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =35
+
+        GalleryNavigation_5 As gallery.galleryVertical:
+            DisabledBorderColor: =GalleryNavigation_5.BorderColor
+            DisabledFill: =GalleryNavigation_5.Fill
+            Fill: =RGBA(0,0,0,0)
+            HoverBorderColor: =GalleryNavigation_5.BorderColor
+            HoverFill: =GalleryNavigation_5.Fill
+            Items: =NavigationMenu
+            Layout: =Layout.Vertical
+            LoadingSpinnerColor: =GalleryNavigation_5.BorderColor
+            OnSelect: |-
+                =Set(_selectedTutorial, ThisItem);
+                If(
+                    ThisItem.Row = 1, Navigate(WelcomeScreen, BorderStyle.None),
+                    ThisItem.Row = 2, Navigate(AddPartnerDetails, BorderStyle.None),
+                    ThisItem.Row = 3, Navigate(PlannerScreen, BorderStyle.None),
+                    ThisItem.Row = 4, Navigate(OutlookScreen, BorderStyle.None),
+                    ThisItem.Row = 5, Navigate(OneNoteScreen, BorderStyle.None),
+                    ThisItem.Row = 6, Navigate(PopUpLightBoxScreen, BorderStyle.None)
+                );
+            PressedBorderColor: =GalleryNavigation_5.BorderColor
+            PressedFill: =GalleryNavigation_5.Fill
+            ShowScrollbar: =false
+            TemplateFill: =If(ThisItem.Row = _selectedTutorial.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))
+            TemplatePadding: =0
+            TemplateSize: =42
+            Width: =If(IsExpand, 50, 200)
+            X: =0+0
+            Y: =109+0
+            ZIndex: =1
+
+            Image1_5 As image:
+                FocusedBorderColor: =Image1_5.BorderColor
+                Height: =Parent.TemplateHeight
+                HoverBorderColor: =ColorFade(Image1_5.BorderColor, 20%)
+                HoverFill: =ColorFade(Image1_5.Fill, 20%)
+                Image: =ThisItem.Image
+                OnSelect: =Select(Parent)
+                PaddingBottom: =12
+                PaddingTop: =12
+                PressedBorderColor: =ColorFade(Image1_5.BorderColor, -20%)
+                PressedFill: =ColorFade(Image1_5.Fill, -20%)
+                Width: =Image1_5.Height - 10
+                X: =15
+                ZIndex: =1
+
+            Label4_5 As label:
+                FocusedBorderColor: =Label4_5.BorderColor
+                FocusedBorderThickness: =2
+                Height: =42
+                HoverBorderColor: =Label4_5.BorderColor
+                HoverColor: =Label4_5.Color
+                HoverFill: =Label4_5.Fill
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =Label4_5.BorderColor
+                PressedColor: =Label4_5.Color
+                PressedFill: =Label4_5.Fill
+                Size: =10
+                TabIndex: =0
+                Text: =ThisItem.Title
+                X: =50
+                ZIndex: =2
+
+            Rectangle1_5 As rectangle:
+                DisabledFill: =Rectangle1_5.Fill
+                Fill: =RGBA(116, 39, 116, 1)
+                FocusedBorderColor: =Rectangle1_5.BorderColor
+                Height: =20
+                HoverFill: =Rectangle1_5.Fill
+                OnSelect: =Select(Parent)
+                PressedFill: =Rectangle1_5.Fill
+                Visible: =ThisItem.Row = _selectedTutorial.Row
+                Width: =4
+                X: =11
+                Y: =11
+                ZIndex: =3
+
+        iconHamburgerMenu_11 As icon.Hamburger:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledFill: =iconHamburgerMenu_11.Fill
+            FocusedBorderColor: =iconHamburgerMenu_11.BorderColor
+            Height: =16
+            HoverBorderColor: =ColorFade(iconHamburgerMenu_11.BorderColor, 20%)
+            HoverColor: =ColorFade(iconHamburgerMenu_11.Color, 20%)
+            HoverFill: =iconHamburgerMenu_11.Fill
+            Icon: =Icon.Hamburger
+            OnSelect: =Set(IsExpand, !IsExpand)
+            PressedBorderColor: =ColorFade(iconHamburgerMenu_11.BorderColor, -20%)
+            PressedColor: =ColorFade(iconHamburgerMenu_11.Color, -20%)
+            PressedFill: =iconHamburgerMenu_11.Fill
+            TabIndex: =0
+            Width: =16
+            X: =24+0
+            Y: =76+0
+            ZIndex: =2
+
+        Rectangle2_2 As rectangle:
+            DisabledFill: =Rectangle2_2.Fill
+            Fill: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Rectangle2_2.BorderColor
+            Height: =707
+            HoverFill: =Rectangle2_2.Fill
+            PressedFill: =Rectangle2_2.Fill
+            Width: =1
+            X: =CanvasMain_5.X
+            Y: =61+0
+            ZIndex: =3
+
+    GroupBackground_5 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =39
+
+        WelcomeScreenTitleBackground_5 As rectangle:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            DisabledFill: =WelcomeScreenTitleBackground_5.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =WelcomeScreenTitleBackground_5.BorderColor
+            Height: =60
+            HoverFill: =WelcomeScreenTitleBackground_5.Fill
+            PressedFill: =WelcomeScreenTitleBackground_5.Fill
+            Width: =1366
+            ZIndex: =5
+
+        WelcomeScreenTitle_5 As label:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =WelcomeScreenTitle_5.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =WelcomeScreenTitle_5.BorderColor
+            HoverColor: =WelcomeScreenTitle_5.Color
+            HoverFill: =WelcomeScreenTitle_5.Fill
+            LineHeight: =0
+            PressedBorderColor: =WelcomeScreenTitle_5.BorderColor
+            PressedColor: =WelcomeScreenTitle_5.Color
+            PressedFill: =WelcomeScreenTitle_5.Fill
+            Size: =18
+            Text: ="PowerApps Training"
+            Width: =350
+            X: =14
+            Y: =14
+            ZIndex: =6
+
+        ImagePowerAppsLogo_5 As image:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =ImagePowerAppsLogo_5.BorderColor
+            Height: =48
+            HoverBorderColor: =ColorFade(ImagePowerAppsLogo_5.BorderColor, 20%)
+            HoverFill: =ColorFade(ImagePowerAppsLogo_5.Fill, 20%)
+            Image: =PowerApps
+            PressedBorderColor: =ColorFade(ImagePowerAppsLogo_5.BorderColor, -20%)
+            PressedFill: =ColorFade(ImagePowerAppsLogo_5.Fill, -20%)
+            Width: =48
+            X: =1312
+            Y: =6
+            ZIndex: =7
+
+    GroupDetailsPanel As group:
+        Height: =5
+        Width: =5
+        X: =-906
+        Y: =-20
+        ZIndex: =42
+
+        RectangleDetailsBackground As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0.16)
+            BorderThickness: =1
+            DisabledFill: =RectangleDetailsBackground.Fill
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =RectangleDetailsBackground.BorderColor
+            Height: =708
+            HoverFill: =RectangleDetailsBackground.Fill
+            PressedFill: =RectangleDetailsBackground.Fill
+            Width: =420
+            X: =946
+            Y: =60
+            ZIndex: =9
+
+        LabelDetalisTitle As label:
+            FocusedBorderColor: =LabelDetalisTitle.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Lighter
+            HoverBorderColor: =LabelDetalisTitle.BorderColor
+            HoverColor: =LabelDetalisTitle.Color
+            HoverFill: =LabelDetalisTitle.Fill
+            PressedBorderColor: =LabelDetalisTitle.BorderColor
+            PressedColor: =LabelDetalisTitle.Color
+            PressedFill: =LabelDetalisTitle.Fill
+            Size: =15
+            Text: ="Details"
+            X: =975
+            Y: =82
+            ZIndex: =10
+
+        LabelDetailsSteps As label:
+            Color: =If(IsShowResourcesTab, RGBA(102,102,102,1), RGBA(51,51,51,1))
+            FocusedBorderColor: =LabelDetailsSteps.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsSteps.BorderColor
+            HoverColor: =LabelDetailsSteps.Color
+            HoverFill: =LabelDetailsSteps.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: false})
+            PressedBorderColor: =LabelDetailsSteps.BorderColor
+            PressedColor: =LabelDetailsSteps.Color
+            PressedFill: =LabelDetailsSteps.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Steps"
+            Width: =59
+            X: =979
+            Y: =130
+            ZIndex: =11
+
+        LabelDetailsResources As label:
+            Align: =Align.Center
+            Color: =If(IsShowResourcesTab, RGBA(51,51,51,1), RGBA(102,102,102,1))
+            FocusedBorderColor: =LabelDetailsResources.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsResources.BorderColor
+            HoverColor: =LabelDetailsResources.Color
+            HoverFill: =LabelDetailsResources.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: true})
+            PressedBorderColor: =LabelDetailsResources.BorderColor
+            PressedColor: =LabelDetailsResources.Color
+            PressedFill: =LabelDetailsResources.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Resources"
+            Width: =98
+            X: =1038
+            Y: =130
+            ZIndex: =12
+
+        RectangleTab1 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab1.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab1.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab1.Fill
+            PressedFill: =RectangleTab1.Fill
+            Visible: =!IsShowResourcesTab
+            Width: =LabelDetailsSteps.Width - 15
+            X: =983
+            Y: =168
+            ZIndex: =13
+
+        RectangleTab2 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab2.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab2.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab2.Fill
+            PressedFill: =RectangleTab2.Fill
+            Visible: =IsShowResourcesTab
+            Width: =LabelDetailsResources.Width - 23
+            X: =LabelDetailsResources.X + 13
+            Y: =168
+            ZIndex: =14
+
+        HtmlTextFunctionPanelSteps As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =596
+            HoverBorderColor: =HtmlTextFunctionPanelSteps.BorderColor
+            HtmlText: |-
+                ="
+                <div style='margin: 0 0 0 20px; font-size: 12pt !important; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                  <div style=""width: 85%; margin: 10px 0 20px;"">Follow the steps outlined below to implement Pop-up lightbox in your PowerApp: </div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >1</div>
+                  <div style=""float: left; width: 75%; "">
+                    Add a button and set the &ldquo;<strong>Text</strong>&rdquo; property to <em>&quot;Button&quot;,</em> then set the &ldquo;<strong>OnSelect</strong>&rdquo; property to: <br /> <br />
+                     <em>
+                        <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                UpdateContext({ShowPopupLightBox:true})
+                        </pre>
+                    </em>
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >2</div>
+                  <div style=""float: left; width: 75%; "">
+                    Insert a rectangle on the form and name it as <strong>RectangleOverlay</strong>.<br /><br />
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >3</div>
+                  <div style=""float: left; width: 75%; "">
+                    Set the &ldquo;<strong>Fill</strong>&rdquo; property of the overlay (RectangleOverlay) to: <br /><br />
+                    <em>
+                      <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                RGBA(0, 0, 0, .6)
+                      </pre>
+                  </em>
+                
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >4</div>
+                  <div style=""float: left; width: 75%; "">
+                    Resize the overlay (RectangleOverlay) to fit the  screen.<br /><br />
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >5</div>
+                  <div style=""float: left; width: 75%; "">
+                    Place a new rectangle on the overlay and name it as <strong>RectanglePopupBox</strong>, then set the &ldquo;<strong>Fill</strong>&rdquo; property to: <br /><br />
+                    <em>
+                      <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                RGBA(255, 255, 255, 1)
+                      </pre>
+                  </em>
+                
+                  </div>
+                  <div style=""clear: both""></div>
+                  
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >6</div>
+                  <div style=""float: left; width: 75%; "">
+                    Resize the overlay (RectangleOverlay) to fill the screen or to be any size you want.<br /><br />
+                  </div>
+                  <div style=""clear: both""></div>
+                  
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >7</div>
+                  <div style=""float: left; width: 75%; "">
+                    Add a Button on the <strong>RectanglePopupBox</strong> and name it <strong>ButtonClose</strong>, then set the &ldquo;<strong>Text</strong>&rdquo; property to: 
+                    <em>&ldquo;Close&rdquo;</em>, then set the &ldquo;<strong>OnSelect</strong>&rdquo; property to <br /> <br /> 
+                    <em>
+                        <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                UpdateContext({ShowPopupLightBox:false})
+                        </pre>
+                    </em>
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >8</div>
+                  <div style=""float: left; width: 75%; "">
+                      Add a close icon in the top-right corner of the <strong>RectanglePopupBox</strong> and name it <strong>IconClose</strong>, then set the &ldquo;<strong>OnSelect</strong>&rdquo; property to: <br /> <br />
+                       <em>
+                          <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                UpdateContext({ShowPopupLightBox:false})
+                          </pre>
+                      </em>
+                  </div>
+                  <div style=""clear: both""></div>
+                
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >9</div>
+                  <div style=""float: left; width: 75%; "">
+                      Add a new text label in the middle of the <strong>RectanglePopupBox</strong> and name it <strong>LabelBoxContent</strong>, then set the &ldquo;<strong>Text</strong>&rdquo; property to the text you want to display in the pop-up box.<br /> <br />
+                  </div>
+                  <div style=""clear: both""></div>
+                  
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >10</div>
+                  <div style=""float: left; width: 75%; "">
+                      Set the &ldquo;<strong>Visible</strong>&rdquo; property of the <strong>RectangleOverlay</strong>, <strong>RectanglePopupBox</strong>, <strong>LabelBoxContent</strong>, <strong>IconClose</strong> and <strong>ButtonClose</strong> controls to: <br /> <br /> 
+                      <em>
+                        <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                ShowPopupLightBox
+                        </pre>
+                      </em>
+                
+                  </div>
+                  <div style=""clear: both""></div>
+                  
+                  <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >11</div>
+                  <div style=""float: left; width: 75%; "">
+                      Now you can save and run your PowerApp.<br /><br /><br /><br />
+                  </div>
+                  <div style=""clear: both""></div>
+                </div>
+                "
+            PressedBorderColor: =HtmlTextFunctionPanelSteps.BorderColor
+            Visible: =!IsShowResourcesTab
+            Width: =420
+            X: =945
+            Y: =170
+            ZIndex: =15
+
+        HtmlTextFunctionPanelResources As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =195
+            HoverBorderColor: =HtmlTextFunctionPanelResources.BorderColor
+            HtmlText: |-
+                ="
+                <div style='margin: 0 0 0 20px; font-size: 12pt; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                  <div style=""margin: 20px 0; font-weight: bold;"">Support &amp; Resources Links</div>
+                  <ul>
+                    <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/add-configure-controls'>Add and configure a control in PowerApps</a></li>
+                    <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/reference-properties'>Controls and properties in PowerApps</a></li>
+                    <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/functions/function-updatecontext'>UpdateContext function in PowerApps</a></li>
+                    <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/functions/function-colors'>Color enumeration in PowerApps</a></li>
+                  </ul>
+                </div>"
+            PressedBorderColor: =HtmlTextFunctionPanelResources.BorderColor
+            Visible: =IsShowResourcesTab
+            Width: =420
+            X: =946
+            Y: =572
+            ZIndex: =16
+

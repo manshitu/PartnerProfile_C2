@@ -1,0 +1,881 @@
+OutlookScreen As screen:
+    Fill: =RGBA(241, 241, 241, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |-
+        =Set(_selectedTutorial,  {Row: 4, Title: "Outlook", Image: OutlookLogo16})
+    Orientation: =If(OutlookScreen.Width < OutlookScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= OutlookScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    Video1_2 As videoPlayback:
+        FocusedBorderColor: =Video1_2.BorderColor
+        Height: =214
+        Media: |-
+            ="https://www.youtube.com/watch?v=ya5A4HLx27Q"
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =300+0
+        ZIndex: =16
+
+    GroupNavigation_3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =16
+
+        GalleryNavigation_3 As gallery.galleryVertical:
+            DisabledBorderColor: =GalleryNavigation_3.BorderColor
+            DisabledFill: =GalleryNavigation_3.Fill
+            Fill: =RGBA(0,0,0,0)
+            HoverBorderColor: =GalleryNavigation_3.BorderColor
+            HoverFill: =GalleryNavigation_3.Fill
+            Items: =NavigationMenu
+            Layout: =Layout.Vertical
+            LoadingSpinnerColor: =GalleryNavigation_3.BorderColor
+            OnSelect: |-
+                =Set(_selectedTutorial, ThisItem);
+                If(
+                    ThisItem.Row = 1, Navigate(WelcomeScreen, BorderStyle.None),
+                    ThisItem.Row = 2, Navigate(AddPartnerDetails, BorderStyle.None),
+                    ThisItem.Row = 3, Navigate(PlannerScreen, BorderStyle.None),
+                    ThisItem.Row = 4, Navigate(OutlookScreen, BorderStyle.None),
+                    ThisItem.Row = 5, Navigate(OneNoteScreen, BorderStyle.None),
+                    ThisItem.Row = 6, Navigate(PopUpLightBoxScreen, BorderStyle.None)
+                );
+            PressedBorderColor: =GalleryNavigation_3.BorderColor
+            PressedFill: =GalleryNavigation_3.Fill
+            ShowScrollbar: =false
+            TemplateFill: =If(ThisItem.Row = _selectedTutorial.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))
+            TemplatePadding: =0
+            TemplateSize: =42
+            Width: =If(IsExpand, 50, 200)
+            X: =0+0
+            Y: =109+0
+            ZIndex: =1
+
+            Image1_3 As image:
+                FocusedBorderColor: =Image1_3.BorderColor
+                Height: =Parent.TemplateHeight
+                HoverBorderColor: =ColorFade(Image1_3.BorderColor, 20%)
+                HoverFill: =ColorFade(Image1_3.Fill, 20%)
+                Image: =ThisItem.Image
+                OnSelect: =Select(Parent)
+                PaddingBottom: =12
+                PaddingTop: =12
+                PressedBorderColor: =ColorFade(Image1_3.BorderColor, -20%)
+                PressedFill: =ColorFade(Image1_3.Fill, -20%)
+                Width: =Image1_3.Height - 10
+                X: =15
+                ZIndex: =1
+
+            Label4_3 As label:
+                FocusedBorderColor: =Label4_3.BorderColor
+                FocusedBorderThickness: =2
+                Height: =42
+                HoverBorderColor: =Label4_3.BorderColor
+                HoverColor: =Label4_3.Color
+                HoverFill: =Label4_3.Fill
+                OnSelect: =Select(Parent)
+                PressedBorderColor: =Label4_3.BorderColor
+                PressedColor: =Label4_3.Color
+                PressedFill: =Label4_3.Fill
+                Size: =10
+                TabIndex: =0
+                Text: =ThisItem.Title
+                X: =50
+                ZIndex: =2
+
+            Rectangle1_3 As rectangle:
+                DisabledFill: =Rectangle1_3.Fill
+                Fill: =RGBA(116, 39, 116, 1)
+                FocusedBorderColor: =Rectangle1_3.BorderColor
+                Height: =20
+                HoverFill: =Rectangle1_3.Fill
+                OnSelect: =Select(Parent)
+                PressedFill: =Rectangle1_3.Fill
+                Visible: =ThisItem.Row = _selectedTutorial.Row
+                Width: =4
+                X: =11
+                Y: =11
+                ZIndex: =3
+
+        iconHamburgerMenu_9 As icon.Hamburger:
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledFill: =iconHamburgerMenu_9.Fill
+            FocusedBorderColor: =iconHamburgerMenu_9.BorderColor
+            Height: =16
+            HoverBorderColor: =ColorFade(iconHamburgerMenu_9.BorderColor, 20%)
+            HoverColor: =ColorFade(iconHamburgerMenu_9.Color, 20%)
+            HoverFill: =iconHamburgerMenu_9.Fill
+            Icon: =Icon.Hamburger
+            OnSelect: =Set(IsExpand, !IsExpand)
+            PressedBorderColor: =ColorFade(iconHamburgerMenu_9.BorderColor, -20%)
+            PressedColor: =ColorFade(iconHamburgerMenu_9.Color, -20%)
+            PressedFill: =iconHamburgerMenu_9.Fill
+            TabIndex: =0
+            Width: =16
+            X: =24+0
+            Y: =76+0
+            ZIndex: =2
+
+        Rectangle2 As rectangle:
+            DisabledFill: =Rectangle2.Fill
+            Fill: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =Rectangle2.BorderColor
+            Height: =707
+            HoverFill: =Rectangle2.Fill
+            PressedFill: =Rectangle2.Fill
+            Width: =1
+            X: =If(!IsExpand, 200, 50)
+            Y: =61+0
+            ZIndex: =3
+
+    Label1_4 As label:
+        FocusedBorderColor: =Label1_4.BorderColor
+        Height: =95
+        HoverBorderColor: =Label1_4.BorderColor
+        HoverColor: =Label1_4.Color
+        HoverFill: =Label1_4.Fill
+        PaddingBottom: =0
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_4.BorderColor
+        PressedColor: =Label1_4.Color
+        PressedFill: =Label1_4.Fill
+        Size: =11
+        Text: ="We have many resources to help you learn about PowerApps, including sample applications, video tutorials, articles and other references. Links to these resources can be found below. "
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =170+0
+        ZIndex: =17
+
+    Label1_5 As label:
+        FocusedBorderColor: =Label1_5.BorderColor
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =Label1_5.BorderColor
+        HoverColor: =Label1_5.Color
+        HoverFill: =Label1_5.Fill
+        PaddingLeft: =23.5
+        PaddingRight: =20
+        PressedBorderColor: =Label1_5.BorderColor
+        PressedColor: =Label1_5.Color
+        PressedFill: =Label1_5.Fill
+        Size: =12
+        Text: ="How-to Video"
+        Visible: =IsShowResourcesTab
+        Width: =409
+        X: =957+0
+        Y: =267+0
+        ZIndex: =18
+
+    Label2_2 As label:
+        FocusedBorderColor: =Label2_2.BorderColor
+        Height: =58
+        HoverBorderColor: =Label2_2.BorderColor
+        HoverColor: =Label2_2.Color
+        HoverFill: =Label2_2.Fill
+        OnSelect: |-
+            =Launch("https://www.youtube.com/watch?v=uwG1Og4f0Vo")
+        PressedBorderColor: =Label2_2.BorderColor
+        PressedColor: =Label2_2.Color
+        PressedFill: =Label2_2.Fill
+        Size: =10
+        TabIndex: =0
+        Text: |-
+            ="https://www.youtube.com/watch?v=ya5A4HLx27Q"
+        Tooltip: ="Select to launch video in new tab"
+        Underline: =true
+        Visible: =IsShowResourcesTab
+        Width: =366
+        X: =975+0
+        Y: =514+0
+        ZIndex: =19
+
+    GroupControlTitle_3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =-47
+        ZIndex: =22
+
+        PageTitle_3 As label:
+            Color: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =PageTitle_3.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Lighter
+            Height: =35
+            HoverBorderColor: =PageTitle_3.BorderColor
+            HoverColor: =PageTitle_3.Color
+            HoverFill: =PageTitle_3.Fill
+            PressedBorderColor: =PageTitle_3.BorderColor
+            PressedColor: =PageTitle_3.Color
+            PressedFill: =PageTitle_3.Fill
+            Size: =15
+            Text: ="Outlook sample"
+            Width: =607
+            X: =If(!IsExpand, 229, 79)
+            Y: =87
+            ZIndex: =20
+
+        DescriptionLabel_3 As label:
+            Color: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =DescriptionLabel_3.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =70
+            HoverBorderColor: =DescriptionLabel_3.BorderColor
+            HoverColor: =DescriptionLabel_3.Color
+            HoverFill: =DescriptionLabel_3.Fill
+            PressedBorderColor: =DescriptionLabel_3.BorderColor
+            PressedColor: =DescriptionLabel_3.Color
+            PressedFill: =DescriptionLabel_3.Fill
+            Size: =9
+            Text: ="The Outlook sample enables an app to send a message with a subject heading to a specific recipient. Users may search Contacts and Directory to identify recipients, and the user may then enter a subject heading and message text for the email."
+            VerticalAlign: =VerticalAlign.Top
+            Width: =682
+            X: =PageTitle_3.X
+            Y: =PageTitle_3.Y + PageTitle_3.Height + 8
+            ZIndex: =21
+
+    GroupBackground_3 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =26
+
+        WelcomeScreenTitleBackground_3 As rectangle:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            DisabledFill: =WelcomeScreenTitleBackground_3.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =WelcomeScreenTitleBackground_3.BorderColor
+            Height: =60
+            HoverFill: =WelcomeScreenTitleBackground_3.Fill
+            PressedFill: =WelcomeScreenTitleBackground_3.Fill
+            Width: =1366
+            ZIndex: =4
+
+        WelcomeScreenTitle_3 As label:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =WelcomeScreenTitle_3.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =WelcomeScreenTitle_3.BorderColor
+            HoverColor: =WelcomeScreenTitle_3.Color
+            HoverFill: =WelcomeScreenTitle_3.Fill
+            LineHeight: =0
+            PressedBorderColor: =WelcomeScreenTitle_3.BorderColor
+            PressedColor: =WelcomeScreenTitle_3.Color
+            PressedFill: =WelcomeScreenTitle_3.Fill
+            Size: =18
+            Text: ="PowerApps Training"
+            Width: =350
+            X: =14
+            Y: =14
+            ZIndex: =5
+
+        ImagePowerAppsLogo_3 As image:
+            BorderColor: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =ImagePowerAppsLogo_3.BorderColor
+            Height: =48
+            HoverBorderColor: =ColorFade(ImagePowerAppsLogo_3.BorderColor, 20%)
+            HoverFill: =ColorFade(ImagePowerAppsLogo_3.Fill, 20%)
+            Image: =PowerApps
+            PressedBorderColor: =ColorFade(ImagePowerAppsLogo_3.BorderColor, -20%)
+            PressedFill: =ColorFade(ImagePowerAppsLogo_3.Fill, -20%)
+            Width: =48
+            X: =1312
+            Y: =6
+            ZIndex: =6
+
+    GallerySelectedPerson_2 As gallery.galleryVertical:
+        AccessibleLabel: ="People for selection"
+        BorderColor: =RGBA(0, 0, 0, 0.16)
+        BorderThickness: =1
+        DisabledBorderColor: =GallerySelectedPerson_2.BorderColor
+        DisabledFill: =GallerySelectedPerson_2.Fill
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =250
+        HoverBorderColor: =GallerySelectedPerson_2.BorderColor
+        HoverFill: =GallerySelectedPerson_2.Fill
+        Items: |-
+            =If(!IsBlank(TextInputSearchPerson_2.Text), Office365Users.SearchUser({searchTerm:Trim(TextInputSearchPerson_2.Text)}))
+        Layout: =Layout.Vertical
+        LoadingSpinnerColor: =GallerySelectedPerson_2.BorderColor
+        OnSelect: |-
+            = UpdateContext({SelectedPerson:ThisItem, HidePeopleGallery:true, IsShowPeopleDetails: true})
+        PressedBorderColor: =GallerySelectedPerson_2.BorderColor
+        PressedFill: =GallerySelectedPerson_2.Fill
+        TemplateSize: =53
+        Visible: =Not(IsBlank(TextInputSearchPerson_2)) && !HidePeopleGallery
+        Width: =260
+        X: =PageTitle_3.X
+        Y: =GroupOutlookAssignToControlSearchbox.Y + GroupOutlookAssignToControlSearchbox.Height
+        ZIndex: =33
+
+        LabelPersonDisplayName_2 As label:
+            Color: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =LabelPersonDisplayName_2.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =51
+            HoverBorderColor: =LabelPersonDisplayName_2.BorderColor
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(244, 244, 244, 1)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =15
+            PaddingLeft: =20
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =LabelPersonDisplayName_2.BorderColor
+            PressedColor: =LabelPersonDisplayName_2.Color
+            PressedFill: =LabelPersonDisplayName_2.Fill
+            Size: =10
+            TabIndex: =0
+            Text: =ThisItem.DisplayName
+            Width: =250
+            ZIndex: =1
+
+        LabelPersonJobTitle_2 As label:
+            Color: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =LabelPersonJobTitle_2.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =27
+            HoverBorderColor: =LabelPersonJobTitle_2.BorderColor
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =20
+            PaddingRight: =0
+            PaddingTop: =0
+            PressedBorderColor: =LabelPersonJobTitle_2.BorderColor
+            PressedColor: =LabelPersonJobTitle_2.Color
+            PressedFill: =LabelPersonJobTitle_2.Fill
+            Size: =9
+            TabIndex: =0
+            Text: =ThisItem.JobTitle
+            Width: =250
+            Y: =24
+            ZIndex: =2
+
+    GroupOutlookControl As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =-47
+        ZIndex: =35
+
+        LabelOutlookRecipient As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelOutlookRecipient.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelOutlookRecipient.BorderColor
+            HoverColor: =LabelOutlookRecipient.Color
+            HoverFill: =LabelOutlookRecipient.Fill
+            PressedBorderColor: =LabelOutlookRecipient.BorderColor
+            PressedColor: =LabelOutlookRecipient.Color
+            PressedFill: =LabelOutlookRecipient.Fill
+            Size: =10.5
+            Text: ="Recipient"
+            X: =PageTitle_3.X
+            Y: =DescriptionLabel_3.Y + DescriptionLabel_3.Height
+            ZIndex: =23
+
+        LabelOutlookSubject As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelOutlookSubject.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelOutlookSubject.BorderColor
+            HoverColor: =LabelOutlookSubject.Color
+            HoverFill: =LabelOutlookSubject.Fill
+            PressedBorderColor: =LabelOutlookSubject.BorderColor
+            PressedColor: =LabelOutlookSubject.Color
+            PressedFill: =LabelOutlookSubject.Fill
+            Size: =10.5
+            Text: ="Subject"
+            X: =PageTitle_3.X
+            Y: =TextInputSearchPerson_2.Y + TextInputSearchPerson_2.Height + 13
+            ZIndex: =24
+
+        LabelOutlookMessage As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelOutlookMessage.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelOutlookMessage.BorderColor
+            HoverColor: =LabelOutlookMessage.Color
+            HoverFill: =LabelOutlookMessage.Fill
+            PressedBorderColor: =LabelOutlookMessage.BorderColor
+            PressedColor: =LabelOutlookMessage.Color
+            PressedFill: =LabelOutlookMessage.Fill
+            Size: =10.5
+            Text: ="Message"
+            X: =PageTitle_3.X
+            Y: =TextInputOutlookSubject.Y + TextInputOutlookSubject.Height + 18
+            ZIndex: =25
+
+        TextInputOutlookMessage As text:
+            AccessibleLabel: ="Outlook message"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputOutlookMessage.BorderColor
+            Height: =121
+            HoverFill: =RGBA(255, 255, 255, 1)
+            Mode: =TextMode.MultiLine
+            PressedBorderColor: =TextInputOutlookMessage.HoverBorderColor
+            PressedColor: =TextInputOutlookMessage.Color
+            PressedFill: =TextInputOutlookMessage.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =577
+            X: =PageTitle_3.X
+            Y: =LabelOutlookMessage.Y + LabelOutlookMessage.Height + 15
+            ZIndex: =26
+
+        ButtonOutlookSend As button:
+            BorderColor: =ColorFade(ButtonOutlookSend.Fill, -15%)
+            DisplayMode: |-
+                =If(!IsBlank(TextInputOutlookSubject.Text)
+                And !IsBlank(TextInputOutlookMessage.Text)
+                And !IsBlank(SelectedPerson.Id), DisplayMode.Edit, DisplayMode.Disabled)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonOutlookSend.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonOutlookSend.BorderColor, 20%)
+            HoverColor: =ButtonOutlookSend.Color
+            HoverFill: =ColorFade(ButtonOutlookSend.Fill, 20%)
+            OnSelect: |-
+                =UpdateContext(
+                    { SavingStatePrompt: "Sending message." }
+                );
+                Office365.SendEmail(
+                    SelectedPerson.UserPrincipalName, 
+                    TextInputOutlookSubject.Text,
+                    TextInputOutlookMessage.Text,
+                    {Importance: "Normal"});
+                UpdateContext(
+                    { SavingStatePrompt: "Message sent." }
+                )
+            PressedBorderColor: =ButtonOutlookSend.Fill
+            PressedColor: =ButtonOutlookSend.Fill
+            PressedFill: =ButtonOutlookSend.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Send"
+            Width: =111
+            X: =PageTitle_3.X
+            Y: =LabelOutlookSavingStatePrompt.Y + LabelOutlookSavingStatePrompt.Height + 15
+            ZIndex: =27
+
+        TextInputOutlookSubject As text:
+            AccessibleLabel: ="Outlook subject"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputOutlookSubject.BorderColor
+            Height: =32
+            HoverBorderColor: =RGBA(128, 128, 128, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputOutlookSubject.HoverBorderColor
+            PressedColor: =TextInputOutlookSubject.Color
+            PressedFill: =TextInputOutlookSubject.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =PageTitle_3.X
+            Y: =LabelOutlookSubject.Y + LabelOutlookSubject.Height + 15
+            ZIndex: =32
+
+        LabelOutlookSavingStatePrompt As label:
+            Color: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =LabelOutlookSavingStatePrompt.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelOutlookSavingStatePrompt.BorderColor
+            HoverColor: =LabelOutlookSavingStatePrompt.Color
+            HoverFill: =LabelOutlookSavingStatePrompt.Fill
+            PressedBorderColor: =LabelOutlookSavingStatePrompt.BorderColor
+            PressedColor: =LabelOutlookSavingStatePrompt.Color
+            PressedFill: =LabelOutlookSavingStatePrompt.Fill
+            Size: =10.5
+            Text: =SavingStatePrompt
+            Width: =300
+            X: =PageTitle_3.X
+            Y: =TextInputOutlookMessage.Y + TextInputOutlookMessage.Height+ 50
+            ZIndex: =34
+
+    GroupOutlookAssignToControlSearchbox As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =-47
+        ZIndex: =36
+
+        TextInputSearchPerson_2 As text:
+            AccessibleLabel: ="Search person"
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =0
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =
+            FocusedBorderColor: =TextInputSearchPerson_2.BorderColor
+            FocusedBorderThickness: =1
+            Font: =Font.'Segoe UI'
+            Height: =30
+            HintText: ="Search Contacts & Directory"
+            HoverBorderColor: =RGBA(255, 255, 255, 1)
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PaddingLeft: =30
+            PressedBorderColor: =TextInputSearchPerson_2.HoverBorderColor
+            PressedColor: =TextInputSearchPerson_2.Color
+            PressedFill: =TextInputSearchPerson_2.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =
+            Size: =9
+            Width: =260
+            X: =PageTitle_3.X
+            Y: =LabelOutlookRecipient.Y + LabelOutlookRecipient.Height + 15
+            ZIndex: =28
+
+        iconStartSearch_2 As icon.Search:
+            BorderColor: =RGBA(116, 39, 116, 1)
+            Color: =RGBA(116, 39, 116, 1)
+            DisabledFill: =iconStartSearch_2.Fill
+            FocusedBorderColor: =iconStartSearch_2.BorderColor
+            FocusedBorderThickness: =1
+            Height: =16
+            HoverBorderColor: =ColorFade(iconStartSearch_2.BorderColor, 20%)
+            HoverColor: =ColorFade(iconStartSearch_2.Color, 20%)
+            HoverFill: =iconStartSearch_2.Fill
+            Icon: =Icon.Search
+            PressedBorderColor: =ColorFade(iconStartSearch_2.BorderColor, -20%)
+            PressedColor: =ColorFade(iconStartSearch_2.Color, -20%)
+            PressedFill: =iconStartSearch_2.Fill
+            Visible: =!HidePeopleGallery
+            Width: =16
+            X: =PageTitle_3.X + 5
+            Y: =LabelOutlookRecipient.Y + LabelOutlookRecipient.Height + 20
+            ZIndex: =29
+
+        iconEditSearch_2 As icon.Edit:
+            BorderColor: =RGBA(116, 39, 116, 1)
+            Color: =RGBA(116, 39, 116, 1)
+            DisabledFill: =iconEditSearch_2.Fill
+            FocusedBorderColor: =iconEditSearch_2.BorderColor
+            FocusedBorderThickness: =1
+            Height: =16
+            HoverBorderColor: =ColorFade(iconEditSearch_2.BorderColor, 20%)
+            HoverColor: =ColorFade(iconEditSearch_2.Color, 20%)
+            HoverFill: =iconEditSearch_2.Fill
+            Icon: =Icon.Edit
+            OnSelect: |-
+                = UpdateContext({HidePeopleGallery:false, IsShowPeopleDetails: false})
+            PressedBorderColor: =ColorFade(iconEditSearch_2.BorderColor, -20%)
+            PressedColor: =ColorFade(iconEditSearch_2.Color, -20%)
+            PressedFill: =iconEditSearch_2.Fill
+            Visible: =HidePeopleGallery
+            Width: =16
+            X: =PageTitle_3.X + 5
+            Y: =LabelOutlookRecipient.Y + LabelOutlookRecipient.Height + 20
+            ZIndex: =30
+
+        LabelValueHover_2 As label:
+            BorderStyle: =BorderStyle.None
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =LabelValueHover_2.BorderColor
+            FocusedBorderThickness: =1
+            Font: =Font.'Segoe UI'
+            Height: =28
+            HoverBorderColor: =LabelValueHover_2.BorderColor
+            HoverColor: =LabelValueHover_2.Color
+            HoverFill: =LabelValueHover_2.Fill
+            OnSelect: |-
+                = UpdateContext({HidePeopleGallery:false, IsShowPeopleDetails: false})
+            PaddingLeft: =30
+            PressedBorderColor: =LabelValueHover_2.BorderColor
+            PressedColor: =LabelValueHover_2.Color
+            PressedFill: =LabelValueHover_2.Fill
+            Size: =9
+            TabIndex: =0
+            Text: =SelectedPerson.DisplayName
+            Visible: =HidePeopleGallery
+            Width: =260
+            X: =PageTitle_3.X
+            Y: =LabelOutlookRecipient.Y + LabelOutlookRecipient.Height + 15
+            ZIndex: =31
+
+    GroupDetailsPanel_3 As group:
+        Height: =5
+        Width: =5
+        X: =-906
+        Y: =-20
+        ZIndex: =42
+
+        RectangleDetailsBackground_3 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0.16)
+            BorderThickness: =1
+            DisabledFill: =RectangleDetailsBackground_3.Fill
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =RectangleDetailsBackground_3.BorderColor
+            Height: =708
+            HoverFill: =RectangleDetailsBackground_3.Fill
+            PressedFill: =RectangleDetailsBackground_3.Fill
+            Width: =420
+            X: =946
+            Y: =60
+            ZIndex: =8
+
+        LabelDetalisTitle_3 As label:
+            FocusedBorderColor: =LabelDetalisTitle_3.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Lighter
+            HoverBorderColor: =LabelDetalisTitle_3.BorderColor
+            HoverColor: =LabelDetalisTitle_3.Color
+            HoverFill: =LabelDetalisTitle_3.Fill
+            PressedBorderColor: =LabelDetalisTitle_3.BorderColor
+            PressedColor: =LabelDetalisTitle_3.Color
+            PressedFill: =LabelDetalisTitle_3.Fill
+            Size: =15
+            Text: ="Details"
+            X: =975
+            Y: =82
+            ZIndex: =9
+
+        LabelDetailsSteps_3 As label:
+            Color: =If(IsShowResourcesTab, RGBA(102,102,102,1), RGBA(51,51,51,1))
+            FocusedBorderColor: =LabelDetailsSteps_3.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsSteps_3.BorderColor
+            HoverColor: =LabelDetailsSteps_3.Color
+            HoverFill: =LabelDetailsSteps_3.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: false})
+            PressedBorderColor: =LabelDetailsSteps_3.BorderColor
+            PressedColor: =LabelDetailsSteps_3.Color
+            PressedFill: =LabelDetailsSteps_3.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Steps"
+            Width: =59
+            X: =979
+            Y: =130
+            ZIndex: =10
+
+        LabelDetailsResources_3 As label:
+            Align: =Align.Center
+            Color: =If(IsShowResourcesTab, RGBA(51,51,51,1), RGBA(102,102,102,1))
+            FocusedBorderColor: =LabelDetailsResources_3.BorderColor
+            Font: =Font.'Segoe UI'
+            FontWeight: =If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Normal)
+            HoverBorderColor: =LabelDetailsResources_3.BorderColor
+            HoverColor: =LabelDetailsResources_3.Color
+            HoverFill: =LabelDetailsResources_3.Fill
+            OnSelect: |-
+                =UpdateContext({IsShowResourcesTab: true})
+            PressedBorderColor: =LabelDetailsResources_3.BorderColor
+            PressedColor: =LabelDetailsResources_3.Color
+            PressedFill: =LabelDetailsResources_3.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Resources"
+            Width: =98
+            X: =1038
+            Y: =130
+            ZIndex: =11
+
+        RectangleTab1_3 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab1_3.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab1_3.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab1_3.Fill
+            PressedFill: =RectangleTab1_3.Fill
+            Visible: =!IsShowResourcesTab
+            Width: =LabelDetailsSteps_3.Width - 15
+            X: =983
+            Y: =168
+            ZIndex: =12
+
+        RectangleTab2_3 As rectangle:
+            BorderStyle: =BorderStyle.None
+            DisabledFill: =RectangleTab2_3.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleTab2_3.BorderColor
+            Height: =2
+            HoverFill: =RectangleTab2_3.Fill
+            PressedFill: =RectangleTab2_3.Fill
+            Visible: =IsShowResourcesTab
+            Width: =LabelDetailsResources_3.Width - 23
+            X: =LabelDetailsResources_3.X + 13
+            Y: =168
+            ZIndex: =13
+
+        HtmlTextFunctionPanelSteps_3 As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =596
+            HoverBorderColor: =HtmlTextFunctionPanelSteps_3.BorderColor
+            HtmlText: |-
+                ="
+                <div style='margin: 0 0 0 20px; font-size: 12pt !important; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                    <div style=""width: 85%; margin: 10px 0 20px;"">Follow the steps outlined below to implement email capabilities in your PowerApp:</div>
+                  
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >1</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add the data connection, select Office 365 Outlook and Office 365 Users respectively, click connect, and if prompted to sign in, enter your work account.<br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                  
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >2</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Recipient
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >3</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Text input control to the form and name it as <strong>SelectedPerson</strong>.<br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >4</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Subject
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >5</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Text input control on the form and name it as <strong>TextInputOutlookSubject</strong>.<br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                    
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >6</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Label control and set the &ldquo;<strong>Text</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Message
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >7</div>
+                    <div style=""float: left; width: 75%; "">
+                        Add a Text input control on the form and name it as <strong>TextInputOutlookMessage</strong>,then set the &ldquo;<strong>Mode</strong>&rdquo; property to: <br /><br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Multiline
+                            </pre>
+                        </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                    
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >8</div>
+                    <div style=""float: left; width: 75%; "">
+                       Add a button and name it as <strong>ButtonOutlookSend</strong>. Set the &ldquo;<strong>Text</strong>&rdquo; property to <em>&quot;Send&quot;</em> and set the &ldquo;<strong>DisplayMode</strong>&rdquo; property to: <br /> <br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                If(
+                 !IsBlank(
+                  TextInputOutlookSubject.Text)
+                 And !IsBlank(
+                  TextInputOutlookMessage.Text)
+                 And !IsBlank(
+                  SelectedPerson.Text), 
+                 DisplayMode.Edit, 
+                 DisplayMode.Disabled)
+                            </pre>
+                        </em>          
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >9</div>
+                    <div style=""float: left; width: 75%; "">
+                        Set the &ldquo;<strong>OnSelect</strong>&rdquo; property of the <strong>ButtonOutlookSend</strong> to: <br /> <br />
+                        <em>
+                            <pre style=""font-size: " & StepsPanelCodeFontSize & "pt; white-space: pre-wrap; word-break: break-all"">
+                Office365.SendEmail(
+                 First(Office365Users.SearchUser(
+                  {searchTerm: SelectedPerson.Text})
+                 ).UserPrincipalName, 
+                 TextInputOutlookSubject.Text,
+                 TextInputOutlookMessage.Text,
+                 {Importance: ""Normal""})
+                            </pre>
+                      </em>
+                    </div>
+                    <div style=""clear: both""></div>
+                
+                    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >10</div>
+                    <div style=""float: left; width: 75%; "">
+                        Now you can save and run your PowerApp.<br /><br /><br /><br />
+                    </div>
+                    <div style=""clear: both""></div>
+                </div>
+                "
+            PressedBorderColor: =HtmlTextFunctionPanelSteps_3.BorderColor
+            Visible: =!IsShowResourcesTab
+            Width: =420
+            X: =946
+            Y: =170
+            ZIndex: =14
+
+        HtmlTextFunctionPanelResources_3 As htmlViewer:
+            Font: =Font.'Segoe UI'
+            Height: =195
+            HoverBorderColor: =HtmlTextFunctionPanelResources_3.BorderColor
+            HtmlText: |-
+                ="
+                
+                <div style='margin: 0 0 0 20px; font-size: 12pt; font-weight: normal; color: #444444; padding: 0 10px; width: 100%; overflow: hidden;'>
+                   
+                    <div style=""margin: 20px 0; font-weight: bold;"">Support &amp; Resources Links</div>
+                    <ul> 
+                      <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/add-configure-controls'>Add and configure a control in PowerApps</a></li>
+                      <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/add-data-connection'>Add a data connection in PowerApps</a></li>
+                      <li><a href='https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/connections/connection-office365-outlook'>Connect to Office 365 Outlook from PowerApps</a></li>
+                    </ul>
+                  </div>"
+            PressedBorderColor: =HtmlTextFunctionPanelResources_3.BorderColor
+            Visible: =IsShowResourcesTab
+            Width: =420
+            X: =946
+            Y: =572
+            ZIndex: =15
+

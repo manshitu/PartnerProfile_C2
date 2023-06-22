@@ -1,0 +1,158 @@
+{
+  "0054c296-cf82-4421-add5-7518a6204abd": {
+    "connectionRef": {
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline"
+    },
+    "datasets": {
+      "https://safeguardproducts.sharepoint.com/partner-profile": {
+        "dataSources": {
+          "Brand Details": {
+            "tableName": "7baeb4b4-ec0a-4702-a677-affe466ab0d0"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Brand Details"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0054c296-cf82-4421-add5-7518a6204abd"
+  },
+  "3e990f5f-a334-4e3e-960b-5ba326f81694": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Planner",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/planner/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_planner",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Planner"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "3e990f5f-a334-4e3e-960b-5ba326f81694"
+  },
+  "631c0fb0-c91e-4afb-8b11-cba5d6872f5e": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/390724148/1.0.1641.3327/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "631c0fb0-c91e-4afb-8b11-cba5d6872f5e"
+  },
+  "7492cf69-cc78-477d-9fc8-986387722984": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "OneNote (Business)",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/onenote/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_onenote",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "OneNote(Business)"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "7492cf69-cc78-477d-9fc8-986387722984"
+  },
+  "88440dcb-31dd-4475-b013-ba3ac5e68e51": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/partial-builds/390724148/1.0.1641.3327/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "88440dcb-31dd-4475-b013-ba3ac5e68e51"
+  },
+  "a361dda3-3acd-420e-875b-9894f4a1e023": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://safeguardproducts.sharepoint.com/partner-profile": {
+        "dataSources": {
+          "Account_Informstion": {
+            "tableName": "eeaf13bf-e4b6-453f-a35d-74b1cbb7473c"
+          },
+          "Call_Center_SLAs": {
+            "tableName": "612df96c-45f0-4336-99f1-481e7a6b85b3"
+          },
+          "Dealer_Enrollment": {
+            "tableName": "fb02beaf-9e84-4305-b36c-7657a6c22c0d"
+          },
+          "IT_Systems/Offerings": {
+            "tableName": "01fa4ad4-2bf2-4a0c-a073-b09ed56adffe"
+          },
+          "Standard_Transfers_And_Cancellations": {
+            "tableName": "2ed87890-d8c3-43a7-a383-adf8277d0608"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Dealer_Enrollment",
+      "IT_Systems/Offerings",
+      "Call_Center_SLAs",
+      "Standard_Transfers_And_Cancellations",
+      "Account_Informstion"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "a361dda3-3acd-420e-875b-9894f4a1e023"
+  },
+  "aeb1b4b2-8c79-45bd-ae1f-081cbc45ffae": {
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/shgogna/globalperconnector-train1/1.0.1639.3312/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://safeguardproducts.sharepoint.com/partner-profile": {
+        "dataSources": {
+          "Partner_Profile": {
+            "tableName": "bc7d4e78-4769-4d9e-9115-d6cb5043a87c"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Partner_Profile"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "aeb1b4b2-8c79-45bd-ae1f-081cbc45ffae"
+  }
+}

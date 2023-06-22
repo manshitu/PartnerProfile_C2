@@ -1,0 +1,4744 @@
+AddPartnerDetails As screen:
+    Fill: =RGBA(241, 241, 241, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |+
+        =UpdateContext({BrandVisible:false});
+        Set(_selectedTutorial, {Row: 2, Title: "Add Partner Details", Image: PeopleIcon});
+        
+    Orientation: =If(AddPartnerDetails.Width < AddPartnerDetails.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= AddPartnerDetails.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    "GalleryParterDetailsTabs As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =80
+        Items: =ParterDetailsTabs
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =TopPageHeadingLabelPD.Width/GalleryParterDetailsTabs.AllItemsCount
+        Width: =TopPageHeadingLabelPD.Width
+        X: =TopPageHeadingLabelPD.X
+        Y: =TopPageHeadingLabelPD.Y
+        ZIndex: =2
+
+        RectanglePartnerDetailTab As rectangle:
+            Height: =3
+            OnSelect: =Select(Parent);
+            Visible: =ThisItem.IsSelected
+            Width: =Parent.TemplateWidth
+            X: =ButtonPartnerDetailTab.X
+            Y: =ButtonPartnerDetailTab.Y+ButtonPartnerDetailTab.Height
+            ZIndex: =1
+
+        ButtonPartnerDetailTab As button:
+            BorderThickness: =1
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(56, 86, 153, 1)
+            DisplayMode: =If(ThisItem.IsSelected, DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =RGBA(235, 235, 235, 1)
+            Height: =70
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =13
+            Text: =ThisItem.Title
+            Width: =Parent.TemplateWidth
+            Y: =5
+            ZIndex: =2
+
+    PartnerHeaderAddPartner As PartnerHeader:
+        HeaderText: ="Add Partner Details"
+        ZIndex: =3
+
+    PartnerLeftMenuAddPartner As PartnerLeftMenu:
+        Width: =PartnerLeftMenuAddPartner.MenuWidth
+        ZIndex: =4
+
+    TopPageHeadingLabelPD As label:
+        Color: =RGBA(0, 0, 0, 1)
+        FocusedBorderColor: =TopPageHeadingLabelPD.BorderColor
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Lighter
+        Height: =1
+        HoverBorderColor: =TopPageHeadingLabelPD.BorderColor
+        HoverColor: =TopPageHeadingLabelPD.Color
+        HoverFill: =TopPageHeadingLabelPD.Fill
+        PressedBorderColor: =TopPageHeadingLabelPD.BorderColor
+        PressedColor: =TopPageHeadingLabelPD.Color
+        PressedFill: =TopPageHeadingLabelPD.Fill
+        Size: =15
+        Text: =""
+        Width: =Parent.Width-(PartnerLeftMenuAddPartner.Width)
+        X: =PartnerLeftMenuAddPartner.X+PartnerLeftMenuAddPartner.Width
+        Y: =PartnerHeaderAddPartner.Y+PartnerHeaderAddPartner.Height
+        ZIndex: =5
+
+    ContainerPartnerDetails As groupContainer.manualLayoutContainer:
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="Partner Details",true,false)
+        Width: =TopPageHeadingLabelPD.Width
+        X: =TopPageHeadingLabelPD.X
+        Y: =140
+        ZIndex: =6
+
+        LabelPlannerTaskName_5 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_5.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_5.BorderColor
+            HoverColor: =LabelPlannerTaskName_5.Color
+            HoverFill: =LabelPlannerTaskName_5.Fill
+            PressedBorderColor: =LabelPlannerTaskName_5.BorderColor
+            PressedColor: =LabelPlannerTaskName_5.Color
+            PressedFill: =LabelPlannerTaskName_5.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Partner Name"
+            X: =114
+            Y: =14
+            ZIndex: =1
+
+        TextInputPartnerName As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputPartnerName.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputPartnerName.HoverBorderColor
+            PressedColor: =TextInputPartnerName.Color
+            PressedFill: =TextInputPartnerName.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =44
+            ZIndex: =2
+
+        LabelPlannerTaskName_6 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_6.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_6.BorderColor
+            HoverColor: =LabelPlannerTaskName_6.Color
+            HoverFill: =LabelPlannerTaskName_6.Fill
+            PressedBorderColor: =LabelPlannerTaskName_6.BorderColor
+            PressedColor: =LabelPlannerTaskName_6.Color
+            PressedFill: =LabelPlannerTaskName_6.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Date MSA effective"
+            X: =434
+            Y: =14
+            ZIndex: =3
+
+        TextInputDateMSAEffective As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputDateMSAEffective.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputDateMSAEffective.HoverBorderColor
+            PressedColor: =TextInputDateMSAEffective.Color
+            PressedFill: =TextInputDateMSAEffective.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =44
+            ZIndex: =4
+
+        LabelPlannerPlan_15 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_15.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_15.BorderColor
+            HoverColor: =LabelPlannerPlan_15.Color
+            HoverFill: =LabelPlannerPlan_15.Fill
+            PressedBorderColor: =LabelPlannerPlan_15.BorderColor
+            PressedColor: =LabelPlannerPlan_15.Color
+            PressedFill: =LabelPlannerPlan_15.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Renewal Type"
+            X: =762
+            Y: =97
+            ZIndex: =5
+
+        DropdownRenewaltype As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =127
+            ZIndex: =6
+
+        LabelPlannerPlan_16 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_16.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_16.BorderColor
+            HoverColor: =LabelPlannerPlan_16.Color
+            HoverFill: =LabelPlannerPlan_16.Fill
+            PressedBorderColor: =LabelPlannerPlan_16.BorderColor
+            PressedColor: =LabelPlannerPlan_16.Color
+            PressedFill: =LabelPlannerPlan_16.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Renewal Frequency"
+            X: =114
+            Y: =99
+            ZIndex: =7
+
+        DropdownRenewalFrequency As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =130
+            ZIndex: =8
+
+        LabelPlannerPlan_17 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_17.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_17.BorderColor
+            HoverColor: =LabelPlannerPlan_17.Color
+            HoverFill: =LabelPlannerPlan_17.Fill
+            PressedBorderColor: =LabelPlannerPlan_17.BorderColor
+            PressedColor: =LabelPlannerPlan_17.Color
+            PressedFill: =LabelPlannerPlan_17.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Language Offerings"
+            X: =114
+            Y: =189
+            ZIndex: =9
+
+        DropdownLanguageOffering As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["English (United States)","English (United States)/ English (Canada)/ French (Canada)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =220
+            ZIndex: =10
+
+        LabelPlannerPlan_18 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_18.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_18.BorderColor
+            HoverColor: =LabelPlannerPlan_18.Color
+            HoverFill: =LabelPlannerPlan_18.Fill
+            PressedBorderColor: =LabelPlannerPlan_18.BorderColor
+            PressedColor: =LabelPlannerPlan_18.Color
+            PressedFill: =LabelPlannerPlan_18.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Language Offering"
+            X: =114
+            Y: =273
+            ZIndex: =11
+
+        DropdownProgramoffering As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["D2C","Service Lane","Dealer Channel","Incentives"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =309
+            ZIndex: =12
+
+        LabelPlannerPlan_20 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_20.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_20.BorderColor
+            HoverColor: =LabelPlannerPlan_20.Color
+            HoverFill: =LabelPlannerPlan_20.Fill
+            PressedBorderColor: =LabelPlannerPlan_20.BorderColor
+            PressedColor: =LabelPlannerPlan_20.Color
+            PressedFill: =LabelPlannerPlan_20.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Partner Type"
+            X: =434
+            Y: =96
+            ZIndex: =15
+
+        DropdownPartnerType As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Captive Finance","Captive Insurence","Agent","NVR"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =130
+            ZIndex: =16
+
+        LabelPlannerDueDate_5 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_5.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_5.BorderColor
+            HoverColor: =LabelPlannerDueDate_5.Color
+            HoverFill: =LabelPlannerDueDate_5.Fill
+            PressedBorderColor: =LabelPlannerDueDate_5.BorderColor
+            PressedColor: =LabelPlannerDueDate_5.Color
+            PressedFill: =LabelPlannerDueDate_5.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA renewal date"
+            X: =762
+            Y: =196
+            ZIndex: =17
+
+        DatePickerMSARenewaldate As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate.BorderColor
+            HoverFill: =DatePickerMSARenewaldate.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate.Format, DatePickerMSARenewaldate.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate.BorderColor
+            PressedFill: =DatePickerMSARenewaldate.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =225
+            ZIndex: =18
+
+        LabelPlannerDueDate_6 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_6.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_6.BorderColor
+            HoverColor: =LabelPlannerDueDate_6.Color
+            HoverFill: =LabelPlannerDueDate_6.Fill
+            PressedBorderColor: =LabelPlannerDueDate_6.BorderColor
+            PressedColor: =LabelPlannerDueDate_6.Color
+            PressedFill: =LabelPlannerDueDate_6.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA renewal date"
+            X: =762
+            Y: =280
+            ZIndex: =19
+
+        DatePickerMSARenewalDate As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewalDate.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewalDate.BorderColor
+            HoverFill: =DatePickerMSARenewalDate.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewalDate.Format, DatePickerMSARenewalDate.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewalDate.BorderColor
+            PressedFill: =DatePickerMSARenewalDate.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =311
+            ZIndex: =20
+
+        LabelPlannerPlan_21 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_21.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_21.BorderColor
+            HoverColor: =LabelPlannerPlan_21.Color
+            HoverFill: =LabelPlannerPlan_21.Fill
+            PressedBorderColor: =LabelPlannerPlan_21.BorderColor
+            PressedColor: =LabelPlannerPlan_21.Color
+            PressedFill: =LabelPlannerPlan_21.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Program Offerings"
+            X: =434
+            Y: =280
+            ZIndex: =21
+
+        DropdownProgramOffering As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["D2C","Service Lane","Dealer Channel","Incentives"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =311
+            ZIndex: =22
+
+        ButtonPartnerDetailsSave As button:
+            BorderColor: =ColorFade(ButtonPartnerDetailsSave.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonPartnerDetailsSave.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonPartnerDetailsSave.BorderColor, 20%)
+            HoverColor: =ButtonPartnerDetailsSave.Color
+            HoverFill: =ColorFade(ButtonPartnerDetailsSave.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonPartnerDetailsSave.Fill
+            PressedColor: =ButtonPartnerDetailsSave.Fill
+            PressedFill: =ButtonPartnerDetailsSave.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =932
+            Y: =564
+            ZIndex: =23
+
+        LabelPlannerPlan_23 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_23.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_23.BorderColor
+            HoverColor: =LabelPlannerPlan_23.Color
+            HoverFill: =LabelPlannerPlan_23.Fill
+            PressedBorderColor: =LabelPlannerPlan_23.BorderColor
+            PressedColor: =LabelPlannerPlan_23.Color
+            PressedFill: =LabelPlannerPlan_23.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Payment Cycle"
+            X: =434
+            Y: =361
+            ZIndex: =26
+
+        DropdownPaymentcycle As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Monthly","Quarterly","Annually"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =396
+            ZIndex: =27
+
+        LabelPlannerPlan_19 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_19.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_19.BorderColor
+            HoverColor: =LabelPlannerPlan_19.Color
+            HoverFill: =LabelPlannerPlan_19.Fill
+            PressedBorderColor: =LabelPlannerPlan_19.BorderColor
+            PressedColor: =LabelPlannerPlan_19.Color
+            PressedFill: =LabelPlannerPlan_19.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA Renewal Date"
+            X: =762
+            Y: =14
+            ZIndex: =28
+
+        LabelPlannerPlan_22 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_22.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_22.BorderColor
+            HoverColor: =LabelPlannerPlan_22.Color
+            HoverFill: =LabelPlannerPlan_22.Fill
+            PressedBorderColor: =LabelPlannerPlan_22.BorderColor
+            PressedColor: =LabelPlannerPlan_22.Color
+            PressedFill: =LabelPlannerPlan_22.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="RISK Ownership"
+            X: =114
+            Y: =360
+            ZIndex: =30
+
+        DropdownRiskOwnership As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Core","Non Core","Combination"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =390
+            ZIndex: =31
+
+        DatePickerMSARenewaldate_1 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate_1.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate_1.BorderColor
+            HoverFill: =DatePickerMSARenewaldate_1.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate_1.Format, DatePickerMSARenewaldate_1.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate_1.BorderColor
+            PressedFill: =DatePickerMSARenewaldate_1.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =40
+            ZIndex: =32
+
+        LabelPlannerDueDate_7 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_7.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_7.BorderColor
+            HoverColor: =LabelPlannerDueDate_7.Color
+            HoverFill: =LabelPlannerDueDate_7.Fill
+            PressedBorderColor: =LabelPlannerDueDate_7.BorderColor
+            PressedColor: =LabelPlannerDueDate_7.Color
+            PressedFill: =LabelPlannerDueDate_7.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Program Launch Date"
+            X: =437
+            Y: =190
+            ZIndex: =33
+
+        DatePickerMSARenewaldate_2 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate_2.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate_2.BorderColor
+            HoverFill: =DatePickerMSARenewaldate_2.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate_2.Format, DatePickerMSARenewaldate_2.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate_2.BorderColor
+            PressedFill: =DatePickerMSARenewaldate_2.Fill
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =219
+            ZIndex: =34
+
+        LabelPlannerPlan_24 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_24.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_24.BorderColor
+            HoverColor: =LabelPlannerPlan_24.Color
+            HoverFill: =LabelPlannerPlan_24.Fill
+            PressedBorderColor: =LabelPlannerPlan_24.BorderColor
+            PressedColor: =LabelPlannerPlan_24.Color
+            PressedFill: =LabelPlannerPlan_24.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Target Loss Ratio"
+            X: =756
+            Y: =364
+            ZIndex: =35
+
+        DropdownTargetLossRatio As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["English (United States)","English (United States)/ English (Canada)/ French (Canada)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =395
+            ZIndex: =36
+
+        LabelPlannerPlan_25 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_25.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =31
+            HoverBorderColor: =LabelPlannerPlan_25.BorderColor
+            HoverColor: =LabelPlannerPlan_25.Color
+            HoverFill: =LabelPlannerPlan_25.Fill
+            PressedBorderColor: =LabelPlannerPlan_25.BorderColor
+            PressedColor: =LabelPlannerPlan_25.Color
+            PressedFill: =LabelPlannerPlan_25.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="OEM/Partner Program Revenue Participation"
+            Width: =259
+            X: =114
+            Y: =448
+            ZIndex: =37
+
+        DropdownRenewalFrequency_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Profit Share","Retro","Volume Bonus","Breakage(PPM)","Cancellation Fee"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =488
+            ZIndex: =38
+
+    ContainerDealerErollmentTab As groupContainer.manualLayoutContainer:
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="Dealer Enrolment",true,false)
+        Width: |-
+            =TopPageHeadingLabelPD.Width
+            
+            
+            // 1166
+        X: =TopPageHeadingLabelPD.X
+        Y: =140
+        ZIndex: =7
+
+        LabelPlannerTaskName_1 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_1.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_1.BorderColor
+            HoverColor: =LabelPlannerTaskName_1.Color
+            HoverFill: =LabelPlannerTaskName_1.Fill
+            PressedBorderColor: =LabelPlannerTaskName_1.BorderColor
+            PressedColor: =LabelPlannerTaskName_1.Color
+            PressedFill: =LabelPlannerTaskName_1.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Dealers enrolled
+                "
+            X: =71
+            Y: =27
+            ZIndex: =1
+
+        DropdownDealerChoice As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =65
+            ZIndex: =3
+
+        LabelPlannerTaskName_2 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_2.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =39
+            HoverBorderColor: =LabelPlannerTaskName_2.BorderColor
+            HoverColor: =LabelPlannerTaskName_2.Color
+            HoverFill: =LabelPlannerTaskName_2.Fill
+            PressedBorderColor: =LabelPlannerTaskName_2.BorderColor
+            PressedColor: =LabelPlannerTaskName_2.Color
+            PressedFill: =LabelPlannerTaskName_2.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Dealers enrolled in all products at set up?"
+            Width: =260
+            X: =360
+            Y: =27
+            ZIndex: =4
+
+        DropdownGapSelection As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes-Dealer select","No - Assigned","Not Applicable"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =65
+            ZIndex: =5
+
+        LabelPlannerTaskName_3 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_3.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_3.BorderColor
+            HoverColor: =LabelPlannerTaskName_3.Color
+            HoverFill: =LabelPlannerTaskName_3.Fill
+            PressedBorderColor: =LabelPlannerTaskName_3.BorderColor
+            PressedColor: =LabelPlannerTaskName_3.Color
+            PressedFill: =LabelPlannerTaskName_3.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="GAP Selection
+                "
+            Width: =260
+            X: =648
+            Y: =40
+            ZIndex: =6
+
+        DropdownAdditionalProgram As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Incentives","Overrides","Incentives/Overrides"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =185
+            ZIndex: =7
+
+        LabelPlannerTaskName_4 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_4.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_4.BorderColor
+            HoverColor: =LabelPlannerTaskName_4.Color
+            HoverFill: =LabelPlannerTaskName_4.Fill
+            PressedBorderColor: =LabelPlannerTaskName_4.BorderColor
+            PressedColor: =LabelPlannerTaskName_4.Color
+            PressedFill: =LabelPlannerTaskName_4.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Additional Program Offerings - Dealer opt-in
+                "
+            Width: =260
+            X: =68
+            Y: =134
+            ZIndex: =8
+
+        DropdownLargeDealerroup As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =185
+            ZIndex: =9
+
+        LabelPlannerTaskName_7 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_7.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_7.BorderColor
+            HoverColor: =LabelPlannerTaskName_7.Color
+            HoverFill: =LabelPlannerTaskName_7.Fill
+            PressedBorderColor: =LabelPlannerTaskName_7.BorderColor
+            PressedColor: =LabelPlannerTaskName_7.Color
+            PressedFill: =LabelPlannerTaskName_7.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Large Dealer Group Enrollment Agreements
+                "
+            Width: =260
+            X: =360
+            Y: =134
+            ZIndex: =10
+
+        DropdownOverrideType As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["CB","NCB","Other","Not Applicable"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =185
+            ZIndex: =11
+
+        LabelPlannerTaskName_8 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_8.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_8.BorderColor
+            HoverColor: =LabelPlannerTaskName_8.Color
+            HoverFill: =LabelPlannerTaskName_8.Fill
+            PressedBorderColor: =LabelPlannerTaskName_8.BorderColor
+            PressedColor: =LabelPlannerTaskName_8.Color
+            PressedFill: =LabelPlannerTaskName_8.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Override Type
+                "
+            Width: =260
+            X: =648
+            Y: =134
+            ZIndex: =12
+
+        LabelPlannerTaskName_9 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_9.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =38
+            HoverBorderColor: =LabelPlannerTaskName_9.BorderColor
+            HoverColor: =LabelPlannerTaskName_9.Color
+            HoverFill: =LabelPlannerTaskName_9.Fill
+            PressedBorderColor: =LabelPlannerTaskName_9.BorderColor
+            PressedColor: =LabelPlannerTaskName_9.Color
+            PressedFill: =LabelPlannerTaskName_9.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="If other was selected, please add details here"
+            Width: =260
+            X: =68
+            Y: =257
+            ZIndex: =13
+
+        TextInputPlannerTaskName_2 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputPlannerTaskName_2.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputPlannerTaskName_2.HoverBorderColor
+            PressedColor: =TextInputPlannerTaskName_2.Color
+            PressedFill: =TextInputPlannerTaskName_2.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =220
+            X: =67
+            Y: =308
+            ZIndex: =14
+
+        DropdownOverrideParticipants As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =298
+            ZIndex: =15
+
+        LabelPlannerTaskName_10 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_10.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_10.BorderColor
+            HoverColor: =LabelPlannerTaskName_10.Color
+            HoverFill: =LabelPlannerTaskName_10.Fill
+            PressedBorderColor: =LabelPlannerTaskName_10.BorderColor
+            PressedColor: =LabelPlannerTaskName_10.Color
+            PressedFill: =LabelPlannerTaskName_10.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =360
+            Y: =247
+            ZIndex: =16
+
+        DropdownPaymentType As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Check","ACH","PS","Other","NA"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =185
+            ZIndex: =17
+
+        LabelPlannerTaskName_11 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_11.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_11.BorderColor
+            HoverColor: =LabelPlannerTaskName_11.Color
+            HoverFill: =LabelPlannerTaskName_11.Fill
+            PressedBorderColor: =LabelPlannerTaskName_11.BorderColor
+            PressedColor: =LabelPlannerTaskName_11.Color
+            PressedFill: =LabelPlannerTaskName_11.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Payment Type"
+            Width: =260
+            X: =893
+            Y: =134
+            ZIndex: =18
+
+        ButtonPlannerSave_2 As button:
+            BorderColor: =ColorFade(ButtonPlannerSave_2.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonPlannerSave_2.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonPlannerSave_2.BorderColor, 20%)
+            HoverColor: =ButtonPlannerSave_2.Color
+            HoverFill: =ColorFade(ButtonPlannerSave_2.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonPlannerSave_2.Fill
+            PressedColor: =ButtonPlannerSave_2.Fill
+            PressedFill: =ButtonPlannerSave_2.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =897
+            Y: =498
+            ZIndex: =19
+
+        DropdownDealersEnrolled As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: |-
+                =["DEA administered by SGI
+                ","DEA administered by OEM"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =65
+            ZIndex: =20
+
+        DropdownOverrideParticipants_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =66
+            ZIndex: =21
+
+        LabelPlannerTaskName_12 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_12.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_12.BorderColor
+            HoverColor: =LabelPlannerTaskName_12.Color
+            HoverFill: =LabelPlannerTaskName_12.Fill
+            PressedBorderColor: =LabelPlannerTaskName_12.BorderColor
+            PressedColor: =LabelPlannerTaskName_12.Color
+            PressedFill: =LabelPlannerTaskName_12.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =893
+            Y: =20
+            ZIndex: =22
+
+        DropdownOverrideParticipants_2 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =421
+            ZIndex: =23
+
+        LabelPlannerTaskName_13 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_13.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_13.BorderColor
+            HoverColor: =LabelPlannerTaskName_13.Color
+            HoverFill: =LabelPlannerTaskName_13.Fill
+            PressedBorderColor: =LabelPlannerTaskName_13.BorderColor
+            PressedColor: =LabelPlannerTaskName_13.Color
+            PressedFill: =LabelPlannerTaskName_13.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =68
+            Y: =375
+            ZIndex: =24
+
+        DropdownOverrideParticipants_3 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =308
+            ZIndex: =25
+
+        LabelPlannerTaskName_14 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_14.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_14.BorderColor
+            HoverColor: =LabelPlannerTaskName_14.Color
+            HoverFill: =LabelPlannerTaskName_14.Fill
+            PressedBorderColor: =LabelPlannerTaskName_14.BorderColor
+            PressedColor: =LabelPlannerTaskName_14.Color
+            PressedFill: =LabelPlannerTaskName_14.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =648
+            Y: =257
+            ZIndex: =26
+
+        DropdownOverrideParticipants_4 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =308
+            ZIndex: =27
+
+        LabelPlannerTaskName_15 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_15.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_15.BorderColor
+            HoverColor: =LabelPlannerTaskName_15.Color
+            HoverFill: =LabelPlannerTaskName_15.Fill
+            PressedBorderColor: =LabelPlannerTaskName_15.BorderColor
+            PressedColor: =LabelPlannerTaskName_15.Color
+            PressedFill: =LabelPlannerTaskName_15.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =893
+            Y: =257
+            ZIndex: =28
+
+    ContainerBrandDetails As groupContainer.manualLayoutContainer:
+        Height: =581
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And BrandVisible,true,false)
+        Width: |-
+            =TopPageHeadingLabelPD.Width
+            
+            // 1166
+        X: |-
+            =TopPageHeadingLabelPD.X
+             
+            // 200
+        Y: =187
+        ZIndex: =8
+
+        LabelPlannerTaskName_24 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_24.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_24.BorderColor
+            HoverColor: =LabelPlannerTaskName_24.Color
+            HoverFill: =LabelPlannerTaskName_24.Fill
+            PressedBorderColor: =LabelPlannerTaskName_24.BorderColor
+            PressedColor: =LabelPlannerTaskName_24.Color
+            PressedFill: =LabelPlannerTaskName_24.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Program Name"
+            X: =104
+            Y: =90
+            ZIndex: =1
+
+        TextInputProgramName_1 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputProgramName_1.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputProgramName_1.HoverBorderColor
+            PressedColor: =TextInputProgramName_1.Color
+            PressedFill: =TextInputProgramName_1.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =120
+            ZIndex: =2
+
+        LabelPlannerTaskName_25 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_25.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_25.BorderColor
+            HoverColor: =LabelPlannerTaskName_25.Color
+            HoverFill: =LabelPlannerTaskName_25.Fill
+            PressedBorderColor: =LabelPlannerTaskName_25.BorderColor
+            PressedColor: =LabelPlannerTaskName_25.Color
+            PressedFill: =LabelPlannerTaskName_25.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Dealer Channel"
+            X: =413
+            Y: =90
+            ZIndex: =3
+
+        DropdownRenewaltype_4 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            Default: ="Select"
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["OEM","Agent","NVR","Non-Auto","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =116
+            ZIndex: =4
+
+        LabelPlannerTaskName_26 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_26.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_26.BorderColor
+            HoverColor: =LabelPlannerTaskName_26.Color
+            HoverFill: =LabelPlannerTaskName_26.Fill
+            PressedBorderColor: =LabelPlannerTaskName_26.BorderColor
+            PressedColor: =LabelPlannerTaskName_26.Color
+            PressedFill: =LabelPlannerTaskName_26.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Motor Type"
+            X: =413
+            Y: =159
+            ZIndex: =5
+
+        DropdownRenewaltype_12 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Auto","RV","Marine","Motorcycle/Powersports"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =185
+            ZIndex: =6
+
+        LabelPlannerTaskName_33 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_33.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_33.BorderColor
+            HoverColor: =LabelPlannerTaskName_33.Color
+            HoverFill: =LabelPlannerTaskName_33.Fill
+            PressedBorderColor: =LabelPlannerTaskName_33.BorderColor
+            PressedColor: =LabelPlannerTaskName_33.Color
+            PressedFill: =LabelPlannerTaskName_33.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Goodwill Usage"
+            X: =413
+            Y: =315
+            ZIndex: =7
+
+        DropdownRenewaltype_18 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Claims","Cancellation","Out of Business Dealers","Claims/Cancellations","All"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =341
+            ZIndex: =8
+
+        LabelPlannerTaskName_27 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_27.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_27.BorderColor
+            HoverColor: =LabelPlannerTaskName_27.Color
+            HoverFill: =LabelPlannerTaskName_27.Fill
+            PressedBorderColor: =LabelPlannerTaskName_27.BorderColor
+            PressedColor: =LabelPlannerTaskName_27.Color
+            PressedFill: =LabelPlannerTaskName_27.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Agent code "
+            X: =104
+            Y: =160
+            ZIndex: =9
+
+        LabelPlannerTaskName_28 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_28.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_28.BorderColor
+            HoverColor: =LabelPlannerTaskName_28.Color
+            HoverFill: =LabelPlannerTaskName_28.Fill
+            PressedBorderColor: =LabelPlannerTaskName_28.BorderColor
+            PressedColor: =LabelPlannerTaskName_28.Color
+            PressedFill: =LabelPlannerTaskName_28.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Underwriter 1"
+            X: =726
+            Y: =161
+            ZIndex: =10
+
+        DropdownRenewaltype_13 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Assurant (US/CA)","Arch (US/CA)","Old Republic (US/CA)","Amtrust (US)","Other"]   
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =187
+            ZIndex: =11
+
+        LabelPlannerTaskName_29 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_29.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_29.BorderColor
+            HoverColor: =LabelPlannerTaskName_29.Color
+            HoverFill: =LabelPlannerTaskName_29.Fill
+            PressedBorderColor: =LabelPlannerTaskName_29.BorderColor
+            PressedColor: =LabelPlannerTaskName_29.Color
+            PressedFill: =LabelPlannerTaskName_29.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Carrier Code 1"
+            X: =104
+            Y: =238
+            ZIndex: =12
+
+        DropdownRenewaltype_14 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Assurant (US/CA)","Arch (US/CA)","Old Republic (US/CA)","Amtrust (US)","Other","NA"]   
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =264
+            ZIndex: =13
+
+        LabelPlannerTaskName_35 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_35.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =23
+            HoverBorderColor: =LabelPlannerTaskName_35.BorderColor
+            HoverColor: =LabelPlannerTaskName_35.Color
+            HoverFill: =LabelPlannerTaskName_35.Fill
+            PressedBorderColor: =LabelPlannerTaskName_35.BorderColor
+            PressedColor: =LabelPlannerTaskName_35.Color
+            PressedFill: =LabelPlannerTaskName_35.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Marketing"
+            X: =104
+            Y: =401
+            ZIndex: =14
+
+        DropdownRenewaltype_20 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =28
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["SGI","Client"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =425
+            ZIndex: =15
+
+        LabelPlannerTaskName_34 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_34.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_34.BorderColor
+            HoverColor: =LabelPlannerTaskName_34.Color
+            HoverFill: =LabelPlannerTaskName_34.Fill
+            PressedBorderColor: =LabelPlannerTaskName_34.BorderColor
+            PressedColor: =LabelPlannerTaskName_34.Color
+            PressedFill: =LabelPlannerTaskName_34.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="URL Ownership"
+            X: =726
+            Y: =319
+            ZIndex: =16
+
+        DropdownRenewaltype_19 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["SGI","Client"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =345
+            ZIndex: =17
+
+        LabelPlannerTaskName_32 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_32.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_32.BorderColor
+            HoverColor: =LabelPlannerTaskName_32.Color
+            HoverFill: =LabelPlannerTaskName_32.Fill
+            PressedBorderColor: =LabelPlannerTaskName_32.BorderColor
+            PressedColor: =LabelPlannerTaskName_32.Color
+            PressedFill: =LabelPlannerTaskName_32.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Goodwill Bucket"
+            X: =104
+            Y: =315
+            ZIndex: =18
+
+        DropdownRenewaltype_17 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =341
+            ZIndex: =19
+
+        LabelPlannerTaskName_31 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_31.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_31.BorderColor
+            HoverColor: =LabelPlannerTaskName_31.Color
+            HoverFill: =LabelPlannerTaskName_31.Fill
+            PressedBorderColor: =LabelPlannerTaskName_31.BorderColor
+            PressedColor: =LabelPlannerTaskName_31.Color
+            PressedFill: =LabelPlannerTaskName_31.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Carrier Code 2"
+            X: =726
+            Y: =232
+            ZIndex: =20
+
+        DropdownRenewaltype_16 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =258
+            ZIndex: =21
+
+        LabelPlannerTaskName_30 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_30.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_30.BorderColor
+            HoverColor: =LabelPlannerTaskName_30.Color
+            HoverFill: =LabelPlannerTaskName_30.Fill
+            PressedBorderColor: =LabelPlannerTaskName_30.BorderColor
+            PressedColor: =LabelPlannerTaskName_30.Color
+            PressedFill: =LabelPlannerTaskName_30.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Underwriter 2"
+            X: =413
+            Y: =232
+            ZIndex: =22
+
+        DropdownRenewaltype_15 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =258
+            ZIndex: =23
+
+        ButtonBrandSave_1 As button:
+            BorderColor: =ColorFade(ButtonBrandSave_1.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonBrandSave_1.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonBrandSave_1.BorderColor, 20%)
+            HoverColor: =ButtonBrandSave_1.Color
+            HoverFill: =ColorFade(ButtonBrandSave_1.Fill, 20%)
+            OnSelect: |+
+                =ClearCollect(BrandDetails, 'Brand Details');
+                
+                Reset(TextInputAgentCode_1);
+                Reset(TextInputProgramName_1);
+                
+                UpdateContext({BrandVisible:false})
+                
+            PressedBorderColor: =ButtonBrandSave_1.Fill
+            PressedColor: =ButtonBrandSave_1.Fill
+            PressedFill: =ButtonBrandSave_1.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =876
+            Y: =479
+            ZIndex: =24
+
+        TextInputAgentCode_1 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputAgentCode_1.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputAgentCode_1.HoverBorderColor
+            PressedColor: =TextInputAgentCode_1.Color
+            PressedFill: =TextInputAgentCode_1.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =188
+            ZIndex: =25
+
+        LabelPlannerTaskName_36 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_36.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_36.BorderColor
+            HoverColor: =LabelPlannerTaskName_36.Color
+            HoverFill: =LabelPlannerTaskName_36.Fill
+            PressedBorderColor: =LabelPlannerTaskName_36.BorderColor
+            PressedColor: =LabelPlannerTaskName_36.Color
+            PressedFill: =LabelPlannerTaskName_36.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Asset Type"
+            X: =726
+            Y: =90
+            ZIndex: =28
+
+        GroupBrandDropdown_1 As group:
+            Height: =5
+            Width: =5
+            X: =-168
+            Y: =-41
+            ZIndex: =28
+
+            DropdownBrands_1 As dropdown:
+                AccessibleLabel: ="Planer plan"
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderThickness: =1
+                ChevronBackground: =RGBA(255, 255, 255, 1)
+                ChevronFill: =RGBA(123, 123, 123, 1)
+                ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+                ChevronHoverFill: =RGBA(51, 51, 51, 1)
+                Color: =RGBA(51, 51, 51, 1)
+                Fill: =  RGBA(255, 255, 255, 1)
+                FocusedBorderColor: =RGBA(164, 164, 164, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: =30
+                HoverBorderColor: =RGBA(164, 164, 164, 1)
+                HoverColor: =RGBA(51, 51, 51, 1)
+                HoverFill: =RGBA(244,244,244,1)
+                Items: =["Brand1","Brand2","Brand3","Brand4","Brand5","Brand6"]
+                OnSelect: =
+                PressedBorderColor: =RGBA(171, 171, 171, 1)
+                PressedColor: =RGBA(51, 51, 51, 1)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                SelectionColor: =RGBA(51, 51, 51, 1)
+                SelectionFill: =RGBA(244, 244, 244, 1)
+                Size: =10.5
+                Width: =249
+                X: =194
+                Y: =1
+                ZIndex: =26
+
+            Label2_5 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =30
+                Size: =12
+                Text: |-
+                    ="Select the brand:"
+                Width: =177
+                X: =26
+                Y: =1
+                ZIndex: =27
+
+        DropdownRenewaltype_21 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Auto","RV","Marine","Motorcycle/Powersports"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =116
+            ZIndex: =29
+
+    ContainerCallCenterSLA As groupContainer.manualLayoutContainer:
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="Call center SLA",true,false)
+        Width: =TopPageHeadingLabelPD.Width
+        X: =TopPageHeadingLabelPD.X
+        Y: =140
+        ZIndex: =9
+
+        LabelPlannerTaskName_16 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_16.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_16.BorderColor
+            HoverColor: =LabelPlannerTaskName_16.Color
+            HoverFill: =LabelPlannerTaskName_16.Fill
+            PressedBorderColor: =LabelPlannerTaskName_16.BorderColor
+            PressedColor: =LabelPlannerTaskName_16.Color
+            PressedFill: =LabelPlannerTaskName_16.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="SLA%/sec"
+            X: =70
+            Y: =79
+            ZIndex: =1
+
+        LabelPlannerTaskName_17 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_17.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_17.BorderColor
+            HoverColor: =LabelPlannerTaskName_17.Color
+            HoverFill: =LabelPlannerTaskName_17.Fill
+            PressedBorderColor: =LabelPlannerTaskName_17.BorderColor
+            PressedColor: =LabelPlannerTaskName_17.Color
+            PressedFill: =LabelPlannerTaskName_17.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="ABA%"
+            X: =384
+            Y: =84
+            ZIndex: =3
+
+        LabelPlannerPlan_29 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_29.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_29.BorderColor
+            HoverColor: =LabelPlannerPlan_29.Color
+            HoverFill: =LabelPlannerPlan_29.Fill
+            PressedBorderColor: =LabelPlannerPlan_29.BorderColor
+            PressedColor: =LabelPlannerPlan_29.Color
+            PressedFill: =LabelPlannerPlan_29.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="$ Penalty"
+            X: =713
+            Y: =202
+            ZIndex: =5
+
+        DropdownRenewaltype_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =708
+            Y: =232
+            ZIndex: =6
+
+        LabelPlannerPlan_28 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_28.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_28.BorderColor
+            HoverColor: =LabelPlannerPlan_28.Color
+            HoverFill: =LabelPlannerPlan_28.Fill
+            PressedBorderColor: =LabelPlannerPlan_28.BorderColor
+            PressedColor: =LabelPlannerPlan_28.Color
+            PressedFill: =LabelPlannerPlan_28.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Inspections SLA%"
+            X: =70
+            Y: =209
+            ZIndex: =7
+
+        DropdownRenewalFrequency_2 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =59
+            Y: =235
+            ZIndex: =8
+
+        LabelPlannerPlan_30 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_30.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_30.BorderColor
+            HoverColor: =LabelPlannerPlan_30.Color
+            HoverFill: =LabelPlannerPlan_30.Fill
+            PressedBorderColor: =LabelPlannerPlan_30.BorderColor
+            PressedColor: =LabelPlannerPlan_30.Color
+            PressedFill: =LabelPlannerPlan_30.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="1st Miss"
+            X: =68
+            Y: =311
+            ZIndex: =9
+
+        DropdownLanguageOffering_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["English (United States)","English (United States)/ English (Canada)/ French (Canada)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =57
+            Y: =337
+            ZIndex: =10
+
+        LabelPlannerPlan_27 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_27.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =34
+            HoverBorderColor: =LabelPlannerPlan_27.BorderColor
+            HoverColor: =LabelPlannerPlan_27.Color
+            HoverFill: =LabelPlannerPlan_27.Fill
+            PressedBorderColor: =LabelPlannerPlan_27.BorderColor
+            PressedColor: =LabelPlannerPlan_27.Color
+            PressedFill: =LabelPlannerPlan_27.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Payments/Cancel Processing SLA%"
+            Width: =206
+            X: =385
+            Y: =191
+            ZIndex: =15
+
+        DropdownPartnerType_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Captive Finance","Captive Insurence","Agent","NVR"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =387
+            Y: =225
+            ZIndex: =16
+
+        LabelPlannerDueDate_8 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_8.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_8.BorderColor
+            HoverColor: =LabelPlannerDueDate_8.Color
+            HoverFill: =LabelPlannerDueDate_8.Fill
+            PressedBorderColor: =LabelPlannerDueDate_8.BorderColor
+            PressedColor: =LabelPlannerDueDate_8.Color
+            PressedFill: =LabelPlannerDueDate_8.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="3rd Miss"
+            X: =724
+            Y: =313
+            ZIndex: =17
+
+        ButtonPartnerDetailsSave_1 As button:
+            BorderColor: =ColorFade(ButtonPartnerDetailsSave_1.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonPartnerDetailsSave_1.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonPartnerDetailsSave_1.BorderColor, 20%)
+            HoverColor: =ButtonPartnerDetailsSave_1.Color
+            HoverFill: =ColorFade(ButtonPartnerDetailsSave_1.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonPartnerDetailsSave_1.Fill
+            PressedColor: =ButtonPartnerDetailsSave_1.Fill
+            PressedFill: =ButtonPartnerDetailsSave_1.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =932
+            Y: =564
+            ZIndex: =23
+
+        LabelPlannerPlan_26 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_26.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_26.BorderColor
+            HoverColor: =LabelPlannerPlan_26.Color
+            HoverFill: =LabelPlannerPlan_26.Fill
+            PressedBorderColor: =LabelPlannerPlan_26.BorderColor
+            PressedColor: =LabelPlannerPlan_26.Color
+            PressedFill: =LabelPlannerPlan_26.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="ASA sec"
+            X: =713
+            Y: =74
+            ZIndex: =28
+
+        LabelPlannerDueDate_10 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_10.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_10.BorderColor
+            HoverColor: =LabelPlannerDueDate_10.Color
+            HoverFill: =LabelPlannerDueDate_10.Fill
+            PressedBorderColor: =LabelPlannerDueDate_10.BorderColor
+            PressedColor: =LabelPlannerDueDate_10.Color
+            PressedFill: =LabelPlannerDueDate_10.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="2nd Miss"
+            X: =399
+            Y: =297
+            ZIndex: =33
+
+        DropdownRenewalFrequency_3 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =59
+            Y: =100
+            ZIndex: =34
+
+        DropdownRenewalFrequency_4 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =374
+            Y: =108
+            ZIndex: =35
+
+        DropdownRenewalFrequency_5 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =708
+            Y: =100
+            ZIndex: =36
+
+        DropdownRenewalFrequency_6 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =394
+            Y: =339
+            ZIndex: =37
+
+        DropdownRenewalFrequency_7 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =719
+            Y: =344
+            ZIndex: =38
+
+    "'ContainerITSystem/Offering' As groupContainer.manualLayoutContainer":
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="IT System/Offerings",true,false)
+        Width: |-
+            =TopPageHeadingLabelPD.Width
+            
+            // 1166
+        X: |-
+            =TopPageHeadingLabelPD.X
+             
+            // 200
+        Y: =140
+        ZIndex: =10
+
+        LabelPlannerTaskName_37 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_37.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =37
+            HoverBorderColor: =LabelPlannerTaskName_37.BorderColor
+            HoverColor: =LabelPlannerTaskName_37.Color
+            HoverFill: =LabelPlannerTaskName_37.Fill
+            PressedBorderColor: =LabelPlannerTaskName_37.BorderColor
+            PressedColor: =LabelPlannerTaskName_37.Color
+            PressedFill: =LabelPlannerTaskName_37.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Branded Dealer Portal for Remittances/ Resources"
+            Width: =259
+            X: =104
+            Y: =27
+            ZIndex: =1
+
+        LabelPlannerTaskName_38 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_38.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =25
+            HoverBorderColor: =LabelPlannerTaskName_38.BorderColor
+            HoverColor: =LabelPlannerTaskName_38.Color
+            HoverFill: =LabelPlannerTaskName_38.Fill
+            PressedBorderColor: =LabelPlannerTaskName_38.BorderColor
+            PressedColor: =LabelPlannerTaskName_38.Color
+            PressedFill: =LabelPlannerTaskName_38.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="SGI Transactional System
+                "
+            Width: =198
+            X: =413
+            Y: =39
+            ZIndex: =3
+
+        DropdownRenewaltype_5 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            Default: ="Select"
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["DMS","CMS","Phoenix (Roadrunner)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =65
+            ZIndex: =4
+
+        LabelPlannerTaskName_39 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_39.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_39.BorderColor
+            HoverColor: =LabelPlannerTaskName_39.Color
+            HoverFill: =LabelPlannerTaskName_39.Fill
+            PressedBorderColor: =LabelPlannerTaskName_39.BorderColor
+            PressedColor: =LabelPlannerTaskName_39.Color
+            PressedFill: =LabelPlannerTaskName_39.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Cancellation Platform"
+            X: =413
+            Y: =128
+            ZIndex: =5
+
+        DropdownRenewaltype_22 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =154
+            ZIndex: =6
+
+        LabelPlannerTaskName_46 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_46.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_46.BorderColor
+            HoverColor: =LabelPlannerTaskName_46.Color
+            HoverFill: =LabelPlannerTaskName_46.Fill
+            PressedBorderColor: =LabelPlannerTaskName_46.BorderColor
+            PressedColor: =LabelPlannerTaskName_46.Color
+            PressedFill: =LabelPlannerTaskName_46.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Goodwill Usage"
+            X: =413
+            Y: =314
+            ZIndex: =7
+
+        DropdownRenewaltype_28 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Claims","Cancellation","Out of Business Dealers","Claims/Cancellations","All"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =340
+            ZIndex: =8
+
+        LabelPlannerTaskName_40 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_40.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_40.BorderColor
+            HoverColor: =LabelPlannerTaskName_40.Color
+            HoverFill: =LabelPlannerTaskName_40.Fill
+            PressedBorderColor: =LabelPlannerTaskName_40.BorderColor
+            PressedColor: =LabelPlannerTaskName_40.Color
+            PressedFill: =LabelPlannerTaskName_40.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Incentive Platform"
+            X: =104
+            Y: =129
+            ZIndex: =9
+
+        LabelPlannerTaskName_41 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_41.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_41.BorderColor
+            HoverColor: =LabelPlannerTaskName_41.Color
+            HoverFill: =LabelPlannerTaskName_41.Fill
+            PressedBorderColor: =LabelPlannerTaskName_41.BorderColor
+            PressedColor: =LabelPlannerTaskName_41.Color
+            PressedFill: =LabelPlannerTaskName_41.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Lienholder Platform"
+            X: =726
+            Y: =130
+            ZIndex: =10
+
+        DropdownRenewaltype_23 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =156
+            ZIndex: =11
+
+        LabelPlannerTaskName_42 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_42.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_42.BorderColor
+            HoverColor: =LabelPlannerTaskName_42.Color
+            HoverFill: =LabelPlannerTaskName_42.Fill
+            PressedBorderColor: =LabelPlannerTaskName_42.BorderColor
+            PressedColor: =LabelPlannerTaskName_42.Color
+            PressedFill: =LabelPlannerTaskName_42.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Direct to Consumer/ Service Lane"
+            Width: =260
+            X: =104
+            Y: =209
+            ZIndex: =12
+
+        DropdownRenewaltype_24 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =235
+            ZIndex: =13
+
+        LabelPlannerTaskName_48 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_48.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =23
+            HoverBorderColor: =LabelPlannerTaskName_48.BorderColor
+            HoverColor: =LabelPlannerTaskName_48.Color
+            HoverFill: =LabelPlannerTaskName_48.Fill
+            PressedBorderColor: =LabelPlannerTaskName_48.BorderColor
+            PressedColor: =LabelPlannerTaskName_48.Color
+            PressedFill: =LabelPlannerTaskName_48.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Marketing"
+            X: =104
+            Y: =401
+            ZIndex: =14
+
+        DropdownRenewaltype_30 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =28
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["SGI","Client"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =427
+            ZIndex: =15
+
+        LabelPlannerTaskName_47 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_47.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_47.BorderColor
+            HoverColor: =LabelPlannerTaskName_47.Color
+            HoverFill: =LabelPlannerTaskName_47.Fill
+            PressedBorderColor: =LabelPlannerTaskName_47.BorderColor
+            PressedColor: =LabelPlannerTaskName_47.Color
+            PressedFill: =LabelPlannerTaskName_47.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="URL Ownership"
+            X: =726
+            Y: =318
+            ZIndex: =16
+
+        DropdownRenewaltype_29 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["SGI","Client"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =344
+            ZIndex: =17
+
+        LabelPlannerTaskName_45 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_45.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_45.BorderColor
+            HoverColor: =LabelPlannerTaskName_45.Color
+            HoverFill: =LabelPlannerTaskName_45.Fill
+            PressedBorderColor: =LabelPlannerTaskName_45.BorderColor
+            PressedColor: =LabelPlannerTaskName_45.Color
+            PressedFill: =LabelPlannerTaskName_45.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Goodwill Bucket"
+            X: =104
+            Y: =314
+            ZIndex: =18
+
+        DropdownRenewaltype_27 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =103
+            Y: =340
+            ZIndex: =19
+
+        LabelPlannerTaskName_44 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_44.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_44.BorderColor
+            HoverColor: =LabelPlannerTaskName_44.Color
+            HoverFill: =LabelPlannerTaskName_44.Fill
+            PressedBorderColor: =LabelPlannerTaskName_44.BorderColor
+            PressedColor: =LabelPlannerTaskName_44.Color
+            PressedFill: =LabelPlannerTaskName_44.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Self-service dealer enrollment platform (EDC)"
+            Width: =261
+            X: =726
+            Y: =221
+            ZIndex: =20
+
+        DropdownRenewaltype_26 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =247
+            ZIndex: =21
+
+        LabelPlannerTaskName_43 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_43.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_43.BorderColor
+            HoverColor: =LabelPlannerTaskName_43.Color
+            HoverFill: =LabelPlannerTaskName_43.Fill
+            PressedBorderColor: =LabelPlannerTaskName_43.BorderColor
+            PressedColor: =LabelPlannerTaskName_43.Color
+            PressedFill: =LabelPlannerTaskName_43.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Reinsurance Portal"
+            X: =413
+            Y: =221
+            ZIndex: =22
+
+        DropdownRenewaltype_25 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =413
+            Y: =247
+            ZIndex: =23
+
+        ButtonBrandSave_2 As button:
+            BorderColor: =ColorFade(ButtonBrandSave_2.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonBrandSave_2.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonBrandSave_2.BorderColor, 20%)
+            HoverColor: =ButtonBrandSave_2.Color
+            HoverFill: =ColorFade(ButtonBrandSave_2.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonBrandSave_2.Fill
+            PressedColor: =ButtonBrandSave_2.Fill
+            PressedFill: =ButtonBrandSave_2.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =840
+            Y: =524
+            ZIndex: =24
+
+        LabelPlannerTaskName_49 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_49.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =25
+            HoverBorderColor: =LabelPlannerTaskName_49.BorderColor
+            HoverColor: =LabelPlannerTaskName_49.Color
+            HoverFill: =LabelPlannerTaskName_49.Fill
+            PressedBorderColor: =LabelPlannerTaskName_49.BorderColor
+            PressedColor: =LabelPlannerTaskName_49.Color
+            PressedFill: =LabelPlannerTaskName_49.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="F&I Incentives Managed by SG"
+            Width: =243
+            X: =726
+            Y: =39
+            ZIndex: =28
+
+        DropdownRenewaltype_31 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =727
+            Y: =65
+            ZIndex: =29
+
+        DropdownRenewaltype_32 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Legacy","EAS","Phoenix","Davinci","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =104
+            Y: =65
+            ZIndex: =30
+
+        DropdownRenewaltype_33 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =104
+            Y: =159
+            ZIndex: =31
+
+    ContainerStandardTransfer As groupContainer.manualLayoutContainer:
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="Standard Transfer & Cancellations",true,false)
+        Width: =TopPageHeadingLabelPD.Width
+        X: =TopPageHeadingLabelPD.X
+        Y: =140
+        ZIndex: =11
+
+        LabelPlannerTaskName_18 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_18.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =30
+            HoverBorderColor: =LabelPlannerTaskName_18.BorderColor
+            HoverColor: =LabelPlannerTaskName_18.Color
+            HoverFill: =LabelPlannerTaskName_18.Fill
+            PressedBorderColor: =LabelPlannerTaskName_18.BorderColor
+            PressedColor: =LabelPlannerTaskName_18.Color
+            PressedFill: =LabelPlannerTaskName_18.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Branded Dealer Portal for Remittances/ Resources"
+            Width: =296
+            X: =114
+            Y: =14
+            ZIndex: =1
+
+        TextInputPartnerName_1 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputPartnerName_1.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputPartnerName_1.HoverBorderColor
+            PressedColor: =TextInputPartnerName_1.Color
+            PressedFill: =TextInputPartnerName_1.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =44
+            ZIndex: =2
+
+        LabelPlannerTaskName_19 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_19.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_19.BorderColor
+            HoverColor: =LabelPlannerTaskName_19.Color
+            HoverFill: =LabelPlannerTaskName_19.Fill
+            PressedBorderColor: =LabelPlannerTaskName_19.BorderColor
+            PressedColor: =LabelPlannerTaskName_19.Color
+            PressedFill: =LabelPlannerTaskName_19.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Date MSA effective"
+            X: =434
+            Y: =14
+            ZIndex: =3
+
+        TextInputDateMSAEffective_1 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputDateMSAEffective_1.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputDateMSAEffective_1.HoverBorderColor
+            PressedColor: =TextInputDateMSAEffective_1.Color
+            PressedFill: =TextInputDateMSAEffective_1.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =44
+            ZIndex: =4
+
+        LabelPlannerPlan_34 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_34.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_34.BorderColor
+            HoverColor: =LabelPlannerPlan_34.Color
+            HoverFill: =LabelPlannerPlan_34.Fill
+            PressedBorderColor: =LabelPlannerPlan_34.BorderColor
+            PressedColor: =LabelPlannerPlan_34.Color
+            PressedFill: =LabelPlannerPlan_34.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Renewal Type"
+            X: =762
+            Y: =97
+            ZIndex: =5
+
+        DropdownRenewaltype_2 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =127
+            ZIndex: =6
+
+        LabelPlannerPlan_33 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_33.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_33.BorderColor
+            HoverColor: =LabelPlannerPlan_33.Color
+            HoverFill: =LabelPlannerPlan_33.Fill
+            PressedBorderColor: =LabelPlannerPlan_33.BorderColor
+            PressedColor: =LabelPlannerPlan_33.Color
+            PressedFill: =LabelPlannerPlan_33.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Renewal Frequency"
+            X: =114
+            Y: =99
+            ZIndex: =7
+
+        DropdownRenewalFrequency_8 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Negotiated","Auto-Renewal"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =130
+            ZIndex: =8
+
+        LabelPlannerPlan_35 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_35.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_35.BorderColor
+            HoverColor: =LabelPlannerPlan_35.Color
+            HoverFill: =LabelPlannerPlan_35.Fill
+            PressedBorderColor: =LabelPlannerPlan_35.BorderColor
+            PressedColor: =LabelPlannerPlan_35.Color
+            PressedFill: =LabelPlannerPlan_35.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Language Offerings"
+            X: =114
+            Y: =189
+            ZIndex: =9
+
+        DropdownLanguageOffering_2 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["English (United States)","English (United States)/ English (Canada)/ French (Canada)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =220
+            ZIndex: =10
+
+        LabelPlannerPlan_37 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_37.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_37.BorderColor
+            HoverColor: =LabelPlannerPlan_37.Color
+            HoverFill: =LabelPlannerPlan_37.Fill
+            PressedBorderColor: =LabelPlannerPlan_37.BorderColor
+            PressedColor: =LabelPlannerPlan_37.Color
+            PressedFill: =LabelPlannerPlan_37.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Language Offering"
+            X: =114
+            Y: =273
+            ZIndex: =11
+
+        DropdownProgramoffering_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["D2C","Service Lane","Dealer Channel","Incentives"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =309
+            ZIndex: =12
+
+        LabelPlannerPlan_32 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_32.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_32.BorderColor
+            HoverColor: =LabelPlannerPlan_32.Color
+            HoverFill: =LabelPlannerPlan_32.Fill
+            PressedBorderColor: =LabelPlannerPlan_32.BorderColor
+            PressedColor: =LabelPlannerPlan_32.Color
+            PressedFill: =LabelPlannerPlan_32.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Partner Type"
+            X: =434
+            Y: =96
+            ZIndex: =15
+
+        DropdownPartnerType_2 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Captive Finance","Captive Insurence","Agent","NVR"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =130
+            ZIndex: =16
+
+        LabelPlannerDueDate_9 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_9.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_9.BorderColor
+            HoverColor: =LabelPlannerDueDate_9.Color
+            HoverFill: =LabelPlannerDueDate_9.Fill
+            PressedBorderColor: =LabelPlannerDueDate_9.BorderColor
+            PressedColor: =LabelPlannerDueDate_9.Color
+            PressedFill: =LabelPlannerDueDate_9.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA renewal date"
+            X: =762
+            Y: =196
+            ZIndex: =17
+
+        DatePickerMSARenewaldate_4 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate_4.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate_4.BorderColor
+            HoverFill: =DatePickerMSARenewaldate_4.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate_4.Format, DatePickerMSARenewaldate_4.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate_4.BorderColor
+            PressedFill: =DatePickerMSARenewaldate_4.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =225
+            ZIndex: =18
+
+        LabelPlannerDueDate_11 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_11.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_11.BorderColor
+            HoverColor: =LabelPlannerDueDate_11.Color
+            HoverFill: =LabelPlannerDueDate_11.Fill
+            PressedBorderColor: =LabelPlannerDueDate_11.BorderColor
+            PressedColor: =LabelPlannerDueDate_11.Color
+            PressedFill: =LabelPlannerDueDate_11.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA renewal date"
+            X: =762
+            Y: =280
+            ZIndex: =19
+
+        DatePickerMSARenewalDate_1 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewalDate_1.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewalDate_1.BorderColor
+            HoverFill: =DatePickerMSARenewalDate_1.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewalDate_1.Format, DatePickerMSARenewalDate_1.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewalDate_1.BorderColor
+            PressedFill: =DatePickerMSARenewalDate_1.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =311
+            ZIndex: =20
+
+        LabelPlannerPlan_36 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_36.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_36.BorderColor
+            HoverColor: =LabelPlannerPlan_36.Color
+            HoverFill: =LabelPlannerPlan_36.Fill
+            PressedBorderColor: =LabelPlannerPlan_36.BorderColor
+            PressedColor: =LabelPlannerPlan_36.Color
+            PressedFill: =LabelPlannerPlan_36.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Program Offerings"
+            X: =434
+            Y: =280
+            ZIndex: =21
+
+        DropdownProgramOffering_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["D2C","Service Lane","Dealer Channel","Incentives"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =311
+            ZIndex: =22
+
+        ButtonPartnerDetailsSave_2 As button:
+            BorderColor: =ColorFade(ButtonPartnerDetailsSave_2.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonPartnerDetailsSave_2.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonPartnerDetailsSave_2.BorderColor, 20%)
+            HoverColor: =ButtonPartnerDetailsSave_2.Color
+            HoverFill: =ColorFade(ButtonPartnerDetailsSave_2.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonPartnerDetailsSave_2.Fill
+            PressedColor: =ButtonPartnerDetailsSave_2.Fill
+            PressedFill: =ButtonPartnerDetailsSave_2.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =932
+            Y: =564
+            ZIndex: =23
+
+        LabelPlannerPlan_38 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_38.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_38.BorderColor
+            HoverColor: =LabelPlannerPlan_38.Color
+            HoverFill: =LabelPlannerPlan_38.Fill
+            PressedBorderColor: =LabelPlannerPlan_38.BorderColor
+            PressedColor: =LabelPlannerPlan_38.Color
+            PressedFill: =LabelPlannerPlan_38.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Payment Cycle"
+            X: =434
+            Y: =361
+            ZIndex: =26
+
+        DropdownPaymentcycle_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Monthly","Quarterly","Annually"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =396
+            ZIndex: =27
+
+        LabelPlannerPlan_31 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_31.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_31.BorderColor
+            HoverColor: =LabelPlannerPlan_31.Color
+            HoverFill: =LabelPlannerPlan_31.Fill
+            PressedBorderColor: =LabelPlannerPlan_31.BorderColor
+            PressedColor: =LabelPlannerPlan_31.Color
+            PressedFill: =LabelPlannerPlan_31.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="MSA Renewal Date"
+            X: =762
+            Y: =14
+            ZIndex: =28
+
+        LabelPlannerPlan_39 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_39.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_39.BorderColor
+            HoverColor: =LabelPlannerPlan_39.Color
+            HoverFill: =LabelPlannerPlan_39.Fill
+            PressedBorderColor: =LabelPlannerPlan_39.BorderColor
+            PressedColor: =LabelPlannerPlan_39.Color
+            PressedFill: =LabelPlannerPlan_39.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="RISK Ownership"
+            X: =114
+            Y: =360
+            ZIndex: =30
+
+        DropdownRiskOwnership_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Core","Non Core","Combination"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =390
+            ZIndex: =31
+
+        DatePickerMSARenewaldate_3 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate_3.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate_3.BorderColor
+            HoverFill: =DatePickerMSARenewaldate_3.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate_3.Format, DatePickerMSARenewaldate_3.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate_3.BorderColor
+            PressedFill: =DatePickerMSARenewaldate_3.Fill
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =40
+            ZIndex: =32
+
+        LabelPlannerDueDate_12 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerDueDate_12.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerDueDate_12.BorderColor
+            HoverColor: =LabelPlannerDueDate_12.Color
+            HoverFill: =LabelPlannerDueDate_12.Fill
+            PressedBorderColor: =LabelPlannerDueDate_12.BorderColor
+            PressedColor: =LabelPlannerDueDate_12.Color
+            PressedFill: =LabelPlannerDueDate_12.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Program Launch Date"
+            X: =437
+            Y: =190
+            ZIndex: =33
+
+        DatePickerMSARenewaldate_5 As datepicker:
+            AccessibleLabel: ="Planner task due date"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =DatePickerMSARenewaldate_5.BorderColor
+            Height: =32
+            HoverBorderColor: =DatePickerMSARenewaldate_5.BorderColor
+            HoverFill: =DatePickerMSARenewaldate_5.Fill
+            IconBackground: =RGBA(255,255,255,1)
+            IconFill: =ColorFade(RGBA(116,39,116,1), -5%)
+            InputTextPlaceholder: =Text(Date(2001,12,31), DatePickerMSARenewaldate_5.Format, DatePickerMSARenewaldate_5.Language)
+            PaddingBottom: =0
+            PressedBorderColor: =DatePickerMSARenewaldate_5.BorderColor
+            PressedFill: =DatePickerMSARenewaldate_5.Fill
+            Size: =10.5
+            Width: =260
+            X: =436
+            Y: =219
+            ZIndex: =34
+
+        LabelPlannerPlan_40 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_40.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerPlan_40.BorderColor
+            HoverColor: =LabelPlannerPlan_40.Color
+            HoverFill: =LabelPlannerPlan_40.Fill
+            PressedBorderColor: =LabelPlannerPlan_40.BorderColor
+            PressedColor: =LabelPlannerPlan_40.Color
+            PressedFill: =LabelPlannerPlan_40.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Target Loss Ratio"
+            X: =756
+            Y: =364
+            ZIndex: =35
+
+        DropdownTargetLossRatio_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["English (United States)","English (United States)/ English (Canada)/ French (Canada)","Other"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =762
+            Y: =395
+            ZIndex: =36
+
+        LabelPlannerPlan_41 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerPlan_41.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =31
+            HoverBorderColor: =LabelPlannerPlan_41.BorderColor
+            HoverColor: =LabelPlannerPlan_41.Color
+            HoverFill: =LabelPlannerPlan_41.Fill
+            PressedBorderColor: =LabelPlannerPlan_41.BorderColor
+            PressedColor: =LabelPlannerPlan_41.Color
+            PressedFill: =LabelPlannerPlan_41.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="OEM/Partner Program Revenue Participation"
+            Width: =259
+            X: =114
+            Y: =448
+            ZIndex: =37
+
+        DropdownRenewalFrequency_9 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Profit Share","Retro","Volume Bonus","Breakage(PPM)","Cancellation Fee"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =260
+            X: =113
+            Y: =488
+            ZIndex: =38
+
+    ContainerAccountInfo As groupContainer.manualLayoutContainer:
+        Height: =628
+        Visible: =If(ButtonPartnerDetailTab.Text="Account Info",true,false)
+        Width: |-
+            =TopPageHeadingLabelPD.Width
+            
+            
+            // 1166
+        X: =TopPageHeadingLabelPD.X
+        Y: =140
+        ZIndex: =12
+
+        LabelPlannerTaskName_20 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_20.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_20.BorderColor
+            HoverColor: =LabelPlannerTaskName_20.Color
+            HoverFill: =LabelPlannerTaskName_20.Fill
+            PressedBorderColor: =LabelPlannerTaskName_20.BorderColor
+            PressedColor: =LabelPlannerTaskName_20.Color
+            PressedFill: =LabelPlannerTaskName_20.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Dealers enrolled
+                "
+            X: =71
+            Y: =27
+            ZIndex: =1
+
+        DropdownDealerChoice_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =65
+            ZIndex: =3
+
+        LabelPlannerTaskName_21 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_21.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =39
+            HoverBorderColor: =LabelPlannerTaskName_21.BorderColor
+            HoverColor: =LabelPlannerTaskName_21.Color
+            HoverFill: =LabelPlannerTaskName_21.Fill
+            PressedBorderColor: =LabelPlannerTaskName_21.BorderColor
+            PressedColor: =LabelPlannerTaskName_21.Color
+            PressedFill: =LabelPlannerTaskName_21.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Dealers enrolled in all products at set up?"
+            Width: =260
+            X: =360
+            Y: =27
+            ZIndex: =4
+
+        DropdownGapSelection_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes-Dealer select","No - Assigned","Not Applicable"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =65
+            ZIndex: =5
+
+        LabelPlannerTaskName_22 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_22.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =26
+            HoverBorderColor: =LabelPlannerTaskName_22.BorderColor
+            HoverColor: =LabelPlannerTaskName_22.Color
+            HoverFill: =LabelPlannerTaskName_22.Fill
+            PressedBorderColor: =LabelPlannerTaskName_22.BorderColor
+            PressedColor: =LabelPlannerTaskName_22.Color
+            PressedFill: =LabelPlannerTaskName_22.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="GAP Selection
+                "
+            Width: =260
+            X: =648
+            Y: =40
+            ZIndex: =6
+
+        DropdownAdditionalProgram_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Incentives","Overrides","Incentives/Overrides"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =185
+            ZIndex: =7
+
+        LabelPlannerTaskName_50 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_50.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_50.BorderColor
+            HoverColor: =LabelPlannerTaskName_50.Color
+            HoverFill: =LabelPlannerTaskName_50.Fill
+            PressedBorderColor: =LabelPlannerTaskName_50.BorderColor
+            PressedColor: =LabelPlannerTaskName_50.Color
+            PressedFill: =LabelPlannerTaskName_50.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Additional Program Offerings - Dealer opt-in
+                "
+            Width: =260
+            X: =68
+            Y: =134
+            ZIndex: =8
+
+        DropdownLargeDealerroup_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Yes","No"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =185
+            ZIndex: =9
+
+        LabelPlannerTaskName_51 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_51.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_51.BorderColor
+            HoverColor: =LabelPlannerTaskName_51.Color
+            HoverFill: =LabelPlannerTaskName_51.Fill
+            PressedBorderColor: =LabelPlannerTaskName_51.BorderColor
+            PressedColor: =LabelPlannerTaskName_51.Color
+            PressedFill: =LabelPlannerTaskName_51.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Large Dealer Group Enrollment Agreements
+                "
+            Width: =260
+            X: =360
+            Y: =134
+            ZIndex: =10
+
+        DropdownOverrideType_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["CB","NCB","Other","Not Applicable"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =185
+            ZIndex: =11
+
+        LabelPlannerTaskName_23 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_23.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_23.BorderColor
+            HoverColor: =LabelPlannerTaskName_23.Color
+            HoverFill: =LabelPlannerTaskName_23.Fill
+            PressedBorderColor: =LabelPlannerTaskName_23.BorderColor
+            PressedColor: =LabelPlannerTaskName_23.Color
+            PressedFill: =LabelPlannerTaskName_23.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: |-
+                ="Override Type
+                "
+            Width: =260
+            X: =648
+            Y: =134
+            ZIndex: =12
+
+        LabelPlannerTaskName_52 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_52.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =38
+            HoverBorderColor: =LabelPlannerTaskName_52.BorderColor
+            HoverColor: =LabelPlannerTaskName_52.Color
+            HoverFill: =LabelPlannerTaskName_52.Fill
+            PressedBorderColor: =LabelPlannerTaskName_52.BorderColor
+            PressedColor: =LabelPlannerTaskName_52.Color
+            PressedFill: =LabelPlannerTaskName_52.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="If other was selected, please add details here"
+            Width: =260
+            X: =68
+            Y: =257
+            ZIndex: =13
+
+        TextInputPlannerTaskName_3 As text:
+            AccessibleLabel: ="Planner task name"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =""
+            FocusedBorderColor: =TextInputPlannerTaskName_3.BorderColor
+            Height: =32
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PressedBorderColor: =TextInputPlannerTaskName_3.HoverBorderColor
+            PressedColor: =TextInputPlannerTaskName_3.Color
+            PressedFill: =TextInputPlannerTaskName_3.Fill
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =10.5
+            Width: =220
+            X: =67
+            Y: =308
+            ZIndex: =14
+
+        DropdownOverrideParticipants_5 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =359
+            Y: =298
+            ZIndex: =15
+
+        LabelPlannerTaskName_53 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_53.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_53.BorderColor
+            HoverColor: =LabelPlannerTaskName_53.Color
+            HoverFill: =LabelPlannerTaskName_53.Fill
+            PressedBorderColor: =LabelPlannerTaskName_53.BorderColor
+            PressedColor: =LabelPlannerTaskName_53.Color
+            PressedFill: =LabelPlannerTaskName_53.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =360
+            Y: =247
+            ZIndex: =16
+
+        DropdownPaymentType_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Check","ACH","PS","Other","NA"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =185
+            ZIndex: =17
+
+        LabelPlannerTaskName_54 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_54.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_54.BorderColor
+            HoverColor: =LabelPlannerTaskName_54.Color
+            HoverFill: =LabelPlannerTaskName_54.Fill
+            PressedBorderColor: =LabelPlannerTaskName_54.BorderColor
+            PressedColor: =LabelPlannerTaskName_54.Color
+            PressedFill: =LabelPlannerTaskName_54.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Payment Type"
+            Width: =260
+            X: =893
+            Y: =134
+            ZIndex: =18
+
+        ButtonPlannerSave_3 As button:
+            BorderColor: =ColorFade(ButtonPlannerSave_3.Fill, -15%)
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =ButtonPlannerSave_3.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =32
+            HoverBorderColor: =ColorFade(ButtonPlannerSave_3.BorderColor, 20%)
+            HoverColor: =ButtonPlannerSave_3.Color
+            HoverFill: =ColorFade(ButtonPlannerSave_3.Fill, 20%)
+            OnSelect: =
+            PressedBorderColor: =ButtonPlannerSave_3.Fill
+            PressedColor: =ButtonPlannerSave_3.Fill
+            PressedFill: =ButtonPlannerSave_3.Color
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =10.5
+            Text: ="Save"
+            Width: =111
+            X: =897
+            Y: =498
+            ZIndex: =19
+
+        DropdownDealersEnrolled_1 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: |-
+                =["DEA administered by SGI
+                ","DEA administered by OEM"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =65
+            ZIndex: =20
+
+        DropdownOverrideParticipants_6 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =66
+            ZIndex: =21
+
+        LabelPlannerTaskName_55 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_55.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_55.BorderColor
+            HoverColor: =LabelPlannerTaskName_55.Color
+            HoverFill: =LabelPlannerTaskName_55.Fill
+            PressedBorderColor: =LabelPlannerTaskName_55.BorderColor
+            PressedColor: =LabelPlannerTaskName_55.Color
+            PressedFill: =LabelPlannerTaskName_55.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =893
+            Y: =20
+            ZIndex: =22
+
+        DropdownOverrideParticipants_7 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =69
+            Y: =421
+            ZIndex: =23
+
+        LabelPlannerTaskName_56 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_56.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_56.BorderColor
+            HoverColor: =LabelPlannerTaskName_56.Color
+            HoverFill: =LabelPlannerTaskName_56.Fill
+            PressedBorderColor: =LabelPlannerTaskName_56.BorderColor
+            PressedColor: =LabelPlannerTaskName_56.Color
+            PressedFill: =LabelPlannerTaskName_56.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =68
+            Y: =375
+            ZIndex: =24
+
+        DropdownOverrideParticipants_8 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =647
+            Y: =308
+            ZIndex: =25
+
+        LabelPlannerTaskName_57 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_57.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_57.BorderColor
+            HoverColor: =LabelPlannerTaskName_57.Color
+            HoverFill: =LabelPlannerTaskName_57.Fill
+            PressedBorderColor: =LabelPlannerTaskName_57.BorderColor
+            PressedColor: =LabelPlannerTaskName_57.Color
+            PressedFill: =LabelPlannerTaskName_57.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =648
+            Y: =257
+            ZIndex: =26
+
+        DropdownOverrideParticipants_9 As dropdown:
+            AccessibleLabel: ="Planer plan"
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =1
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronFill: =RGBA(123, 123, 123, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 0)
+            ChevronHoverFill: =RGBA(51, 51, 51, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =RGBA(164, 164, 164, 1)
+            Height: =32
+            HoverBorderColor: =RGBA(164, 164, 164, 1)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(244,244,244,1)
+            Items: =["Dealerships only","Dealership participants only","Dealerships and participants"]
+            OnSelect: =
+            PressedBorderColor: =RGBA(171, 171, 171, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            SelectionColor: =RGBA(51, 51, 51, 1)
+            SelectionFill: =RGBA(244, 244, 244, 1)
+            Size: =10.5
+            Width: =220
+            X: =893
+            Y: =308
+            ZIndex: =27
+
+        LabelPlannerTaskName_58 As label:
+            Color: =RGBA(51, 51, 51, 1)
+            FocusedBorderColor: =LabelPlannerTaskName_58.BorderColor
+            Font: =Font.'Segoe UI'
+            Height: =46
+            HoverBorderColor: =LabelPlannerTaskName_58.BorderColor
+            HoverColor: =LabelPlannerTaskName_58.Color
+            HoverFill: =LabelPlannerTaskName_58.Fill
+            PressedBorderColor: =LabelPlannerTaskName_58.BorderColor
+            PressedColor: =LabelPlannerTaskName_58.Color
+            PressedFill: =LabelPlannerTaskName_58.Fill
+            Size: =10.5
+            TabIndex: =0
+            Text: ="Override Participants"
+            Width: =260
+            X: =893
+            Y: =257
+            ZIndex: =28
+
+    Rectangle10 As rectangle:
+        Fill: =RGBA(241, 241, 241, 1)
+        Height: =768
+        Visible: =
+        Width: =1366
+        ZIndex: =13
+
+    Icon1 As icon.Add:
+        Height: =10
+        Icon: =Icon.Add
+        OnSelect: |-
+            =UpdateContext({BrandVisible:true}) //If(ButtonPartnerDetailTab.Text="Brand Details",true,false)
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        Width: =10
+        X: =1280
+        Y: =160
+        ZIndex: =16
+
+    "GalleryBrandDetails As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        BorderThickness: =1
+        DelayItemLoading: =true
+        Items: =BrandDetails
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =40
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        Width: =GalleryParterDetailsTabs.Width
+        X: =GalleryParterDetailsTabs.X
+        Y: =GalleryParterDetailsTabs.Y+GalleryParterDetailsTabs.Height+50
+        ZIndex: =17
+
+        Image3 As image:
+            Height: =2
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =2
+            X: =16
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Title4 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth *.2
+            X: =10
+            Y: =Parent.TemplateHeight*.5-Self.Height*.5
+            ZIndex: =2
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Visible: =ThisItem.IsSelected
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator3 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight
+            ZIndex: =5
+
+        Rectangle1 As rectangle:
+            Height: =Parent.TemplateHeight-15
+            OnSelect: =Select(Parent)
+            Visible: =If(ThisItem.IsSelected, true, false)
+            Width: =4
+            X: =2
+            Y: =7
+            ZIndex: =6
+
+        Title4_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Brand4
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth *.2
+            X: =Title4_2.X+Title4_2.Width
+            Y: =Title4_2.Y
+            ZIndex: =7
+
+        Title4_2 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Brand3
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth *.2
+            X: =Title4_3.X+Title4_3.Width
+            Y: =Title4_3.Y
+            ZIndex: =8
+
+        Title4_3 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Brand2
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth *.2
+            X: =Title4_4.X+Title4_4.Width
+            Y: =Title4_4.Y
+            ZIndex: =9
+
+        Title4_4 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Brand1
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth *.2
+            X: =Title4.X+Title4.Width
+            Y: =Title4.Y
+            ZIndex: =10
+
+    Label1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(101, 128, 187, 1)
+        Text: ="Brand 1"
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        Width: =220
+        X: =377
+        Y: =150
+        ZIndex: =18
+
+    Label1_1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(101, 128, 187, 1)
+        Text: ="Brand 2"
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        Width: =180
+        X: =597
+        Y: =Label1.Y
+        ZIndex: =19
+
+    Label1_10 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(101, 128, 187, 1)
+        Text: ="Brand 3"
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        Width: =274
+        X: =777
+        Y: =150
+        ZIndex: =20
+
+    Label1_11 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(101, 128, 187, 1)
+        Text: ="Brand 4"
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        X: =1051
+        Y: =Label1.Y
+        ZIndex: =21
+
+    Button1 As button:
+        OnSelect: |-
+            =UpdateContext({BrandVisible:true})
+        PaddingBottom: =0
+        PaddingRight: =0
+        PaddingTop: =0
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Text: ="Add Brand"
+        Visible: =If(ButtonPartnerDetailTab.Text="Brand Details" And !BrandVisible,true,false)
+        X: =1204
+        Y: =150
+        ZIndex: =22
+

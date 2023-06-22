@@ -1,0 +1,54 @@
+PartnerHeader As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    HeaderText: =""
+    Height: =60
+    Width: =Max(App.Width, App.MinScreenWidth)
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    HeaderRectangle As rectangle:
+        BorderColor: =RGBA(51, 51, 51, 1)
+        DisabledFill: =HeaderRectangle.Fill
+        Fill: =RGBA(116, 39, 116, 1)
+        FocusedBorderColor: =HeaderRectangle.BorderColor
+        Height: =Parent.Height
+        HoverFill: =HeaderRectangle.Fill
+        PressedFill: =HeaderRectangle.Fill
+        Width: =Parent.Width
+        ZIndex: =1
+
+    HeaderTitle As label:
+        BorderColor: =RGBA(51, 51, 51, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =HeaderTitle.BorderColor
+        Font: =Font.'Segoe UI'
+        Height: =30
+        HoverBorderColor: =HeaderTitle.BorderColor
+        HoverColor: =HeaderTitle.Color
+        HoverFill: =HeaderTitle.Fill
+        LineHeight: =0
+        PressedBorderColor: =HeaderTitle.BorderColor
+        PressedColor: =HeaderTitle.Color
+        PressedFill: =HeaderTitle.Fill
+        Size: =18
+        Text: =PartnerHeader.HeaderText
+        Width: =350
+        X: =14
+        Y: =(Parent.Height*.5)-(Self.Height*.5)
+        ZIndex: =2
+
+    HeaderRightImage As image:
+        BorderColor: =RGBA(51, 51, 51, 1)
+        FocusedBorderColor: =HeaderRightImage.BorderColor
+        Height: =48
+        HoverBorderColor: =ColorFade(HeaderRightImage.BorderColor, 20%)
+        HoverFill: =ColorFade(HeaderRightImage.Fill, 20%)
+        Image: =PowerApps
+        PressedBorderColor: =ColorFade(HeaderRightImage.BorderColor, -20%)
+        PressedFill: =ColorFade(HeaderRightImage.Fill, -20%)
+        Width: =48
+        X: =(Parent.Width)-(Self.Width)-10
+        Y: =(Parent.Height*.5)-(Self.Height*.5)
+        ZIndex: =3
+

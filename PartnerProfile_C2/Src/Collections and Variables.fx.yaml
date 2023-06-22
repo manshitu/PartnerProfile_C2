@@ -1,0 +1,68 @@
+"'Collections and Variables' As screen":
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: =
+    Orientation: =If('Collections and Variables'.Width < 'Collections and Variables'.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= 'Collections and Variables'.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    HtmlTextCollectionsAndVariables As htmlViewer:
+        Height: =507
+        HoverBorderColor: =HtmlTextCollectionsAndVariables.BorderColor
+        HtmlText: |-
+            ="
+            <h3>Collections</h3>
+            <p><strong>MyPlansItems</strong> - Store all Office 365 Planner's plans that you has subscribed</p>
+            <p><strong>MyOneNoteBookItems</strong> - Store all Office 365 OneNote's notebooks that you has created</p>
+            <p><strong>NavigationMenu</strong> - Collection of items for left menu in app</p>
+            <hr />
+            
+            <h3>Global Variables</h3>
+            <p><strong>IsExpand</strong> - Determines whether the left menu is expand or collapse</p>
+            <p><strong>StepsPanelCodeFontSize</strong> - Set the font size for the code text of steps panel</p>
+            <p><strong>_selectedTutorial</strong> - Currently selected left navigation menu item
+            "
+        PressedBorderColor: =HtmlTextCollectionsAndVariables.BorderColor
+        Width: =Parent.Width-PartnerLeftMenu_1.Width
+        X: =PartnerLeftMenu_1.Width
+        ZIndex: =2
+
+    LabelStepsPanelCodeFontSize As label:
+        FocusedBorderColor: =LabelStepsPanelCodeFontSize.BorderColor
+        Height: =63
+        HoverBorderColor: =LabelStepsPanelCodeFontSize.BorderColor
+        HoverColor: =LabelStepsPanelCodeFontSize.Color
+        HoverFill: =LabelStepsPanelCodeFontSize.Fill
+        PressedBorderColor: =LabelStepsPanelCodeFontSize.BorderColor
+        PressedColor: =LabelStepsPanelCodeFontSize.Color
+        PressedFill: =LabelStepsPanelCodeFontSize.Fill
+        Text: |-
+            ="StepsPanelCodeFontSize: " & StepsPanelCodeFontSize & "pt"
+        Width: =333
+        X: =25
+        Y: =667.5
+        ZIndex: =4
+
+    SliderStepsPanelCodeFontSize As slider:
+        Default: =StepsPanelCodeFontSize
+        FocusedBorderColor: =SliderStepsPanelCodeFontSize.BorderColor
+        HandleActiveFill: =SliderStepsPanelCodeFontSize.HandleFill
+        HandleHoverFill: =SliderStepsPanelCodeFontSize.HandleFill
+        HoverBorderColor: =ColorFade(SliderStepsPanelCodeFontSize.BorderColor, 30%)
+        Max: =50
+        Min: =1
+        OnChange: =Set(StepsPanelCodeFontSize, SliderStepsPanelCodeFontSize.Value)
+        PressedBorderColor: =ColorFade(SliderStepsPanelCodeFontSize.BorderColor, -30%)
+        RailHoverFill: =ColorFade(SliderStepsPanelCodeFontSize.RailFill, 15%)
+        ValueHoverFill: =ColorFade(SliderStepsPanelCodeFontSize.ValueFill, 15%)
+        X: =389
+        Y: =679
+        ZIndex: =5
+
+    PartnerHeader_1 As PartnerHeader:
+        HeaderText: ="My Text"
+        ZIndex: =6
+
+    PartnerLeftMenu_1 As PartnerLeftMenu:
+        Width: =PartnerLeftMenu_1.MenuWidth
+        ZIndex: =7
+

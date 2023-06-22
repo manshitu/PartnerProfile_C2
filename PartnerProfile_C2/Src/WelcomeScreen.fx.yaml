@@ -1,0 +1,98 @@
+WelcomeScreen As screen:
+    Fill: =RGBA(241, 241, 241, 1)
+    Height: =Max(App.Height, App.DesignHeight)
+    OnVisible: |-
+        =Set(_selectedTutorial, {Row: 1, Title: "Home", Image: HomeIcon})
+    Orientation: =If(WelcomeScreen.Width < WelcomeScreen.Height, Layout.Vertical, Layout.Horizontal)
+    Size: =1 + CountRows(App.SizeBreakpoints) - CountIf(App.SizeBreakpoints, Value >= WelcomeScreen.Width)
+    Width: =Max(App.Width, App.DesignWidth)
+
+    "GalleryPartnersDetails As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =Parent.Height-(TopPageHeadingLabel.Y+TopPageHeadingLabel.Height)
+        Items: =CustomGallerySample
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        TemplatePadding: =0
+        TemplateSize: =90
+        Width: =TopPageHeadingLabel.Width
+        X: =TopPageHeadingLabel.X
+        Y: =TopPageHeadingLabel.Y+TopPageHeadingLabel.Height
+        ZIndex: =1
+
+        Title2 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.SampleHeading
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 86
+            X: =16
+            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+            ZIndex: =1
+
+        Subtitle1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.SampleText
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Title2.Width
+            X: =Title2.X
+            Y: =Title2.Y + Title2.Height
+            ZIndex: =2
+
+        NextArrow2 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =3
+
+        Separator2 As rectangle:
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =4
+
+        Rectangle3 As rectangle:
+            Height: =Parent.TemplateHeight-12
+            OnSelect: =Select(Parent)
+            Visible: =If(ThisItem.IsSelected, true, false)
+            Width: =3
+            ZIndex: =5
+
+    TopPageHeadingLabel As label:
+        Fill: =RGBA(224, 230, 241, 1)
+        Text: ="Partners List"
+        Width: =Parent.Width-PartnerLeftMenuWelcome.Width
+        X: =PartnerLeftMenuWelcome.X+PartnerLeftMenuWelcome.Width
+        Y: =PartnerHeaderWelcome.Y+PartnerHeaderWelcome.Height
+        ZIndex: =7
+
+    PartnerHeaderWelcome As PartnerHeader:
+        HeaderText: ="Partners List"
+        ZIndex: =9
+
+    PartnerLeftMenuWelcome As PartnerLeftMenu:
+        Width: =PartnerLeftMenuWelcome.MenuWidth
+        ZIndex: =10
+

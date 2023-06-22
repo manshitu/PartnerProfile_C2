@@ -1,0 +1,147 @@
+PartnerLeftMenu As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =Max(App.Height, App.DesignHeight)
+    MenuItems: |-
+        =Table(
+                {
+                    Row: 1,
+                    Title: "Home",
+                    Image: HomeIcon,
+                    Screen: WelcomeScreen
+                },
+                {
+                    Row: 2,
+                    Title: "Partner Profile",
+                    Image: PeopleIcon,
+                    Screen: AddPartnerDetails
+                },
+                {
+                    Row: 3,
+                    Title: "Products",
+                    Image: PlannerLogo,
+                    Screen: PlannerScreen
+                },
+                {
+                    Row: 4,
+                    Title: "Finances",
+                    Image: OutlookLogo16,
+                    Screen: OutlookScreen
+                },
+                {
+                    Row: 5,
+                    Title: "Eligibility Coverage",
+                    Image: OneNoteLogo16,
+                    Screen: OneNoteScreen
+                },
+                {
+                    Row: 6,
+                    Title: "Dealer Groups",
+                    Image: PopUpIcon,
+                    Screen: PopUpLightBoxScreen
+                }
+            )
+    MenuWidth: =If(IsExpand, 50, 200)
+    TopMargin: =60
+    Width: =PartnerLeftMenu.MenuWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    GalleryLeftMenuNavigation As gallery.galleryVertical:
+        DisabledBorderColor: =GalleryLeftMenuNavigation.BorderColor
+        DisabledFill: =GalleryLeftMenuNavigation.Fill
+        Fill: =RGBA(0,0,0,0)
+        HoverBorderColor: =GalleryLeftMenuNavigation.BorderColor
+        HoverFill: =GalleryLeftMenuNavigation.Fill
+        Items: =PartnerLeftMenu.MenuItems
+        Layout: =Layout.Vertical
+        LoadingSpinnerColor: =GalleryLeftMenuNavigation.BorderColor
+        OnSelect: =Set(_selectedTutorial, ThisItem);
+        PressedBorderColor: =GalleryLeftMenuNavigation.BorderColor
+        PressedFill: =GalleryLeftMenuNavigation.Fill
+        ShowScrollbar: =false
+        TemplateFill: =If(ThisItem.Row = _selectedTutorial.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))
+        TemplatePadding: =0
+        TemplateSize: =42
+        Width: =Parent.Width-2
+        X: =0+0
+        Y: =iconHamburgerMenu.Y+iconHamburgerMenu.Height+10
+        ZIndex: =1
+
+        ImageMenuIcon As image:
+            FocusedBorderColor: =ImageMenuIcon.BorderColor
+            Height: =Parent.TemplateHeight
+            HoverBorderColor: =ColorFade(ImageMenuIcon.BorderColor, 20%)
+            HoverFill: =ColorFade(ImageMenuIcon.Fill, 20%)
+            Image: =ThisItem.Image
+            OnSelect: =Navigate(ThisItem.Screen, BorderStyle.None)
+            PaddingBottom: =12
+            PaddingTop: =12
+            PressedBorderColor: =ColorFade(ImageMenuIcon.BorderColor, -20%)
+            PressedFill: =ColorFade(ImageMenuIcon.Fill, -20%)
+            Width: =ImageMenuIcon.Height - 10
+            X: =15
+            ZIndex: =1
+
+        LabelMenuText As label:
+            FocusedBorderColor: =LabelMenuText.BorderColor
+            FocusedBorderThickness: =2
+            Height: =42
+            HoverBorderColor: =LabelMenuText.BorderColor
+            HoverColor: =LabelMenuText.Color
+            HoverFill: =LabelMenuText.Fill
+            OnSelect: =Navigate(ThisItem.Screen, BorderStyle.None)
+            PressedBorderColor: =LabelMenuText.BorderColor
+            PressedColor: =LabelMenuText.Color
+            PressedFill: =LabelMenuText.Fill
+            Size: =10
+            TabIndex: =0
+            Text: =ThisItem.Title
+            X: =50
+            ZIndex: =2
+
+        RectangleMenuSelector As rectangle:
+            DisabledFill: =RectangleMenuSelector.Fill
+            Fill: =RGBA(116, 39, 116, 1)
+            FocusedBorderColor: =RectangleMenuSelector.BorderColor
+            Height: =20
+            HoverFill: =RectangleMenuSelector.Fill
+            OnSelect: =Select(Parent)
+            PressedFill: =RectangleMenuSelector.Fill
+            Visible: =ThisItem.Screen = App.ActiveScreen
+            Width: =4
+            X: =11
+            Y: =11
+            ZIndex: =3
+
+    iconHamburgerMenu As icon.Hamburger:
+        Color: =RGBA(51, 51, 51, 1)
+        DisabledFill: =iconHamburgerMenu.Fill
+        FocusedBorderColor: =iconHamburgerMenu.BorderColor
+        Height: =16
+        HoverBorderColor: =ColorFade(iconHamburgerMenu.BorderColor, 20%)
+        HoverColor: =ColorFade(iconHamburgerMenu.Color, 20%)
+        HoverFill: =iconHamburgerMenu.Fill
+        Icon: =Icon.Hamburger
+        OnSelect: =Set(IsExpand, !IsExpand)
+        PressedBorderColor: =ColorFade(iconHamburgerMenu.BorderColor, -20%)
+        PressedColor: =ColorFade(iconHamburgerMenu.Color, -20%)
+        PressedFill: =iconHamburgerMenu.Fill
+        TabIndex: =0
+        Width: =16
+        X: =24+0
+        Y: =76+0
+        ZIndex: =2
+
+    RectangleLeftMenu As rectangle:
+        DisabledFill: =RectangleLeftMenu.Fill
+        Fill: =RGBA(43, 67, 119, 1)
+        FocusedBorderColor: =RectangleLeftMenu.BorderColor
+        Height: =Parent.Height-PartnerLeftMenu.TopMargin
+        HoverFill: =RectangleLeftMenu.Fill
+        PressedFill: =RectangleLeftMenu.Fill
+        Width: =1
+        X: =PartnerLeftMenu.MenuWidth-Self.Width
+        Y: =PartnerLeftMenu.TopMargin
+        ZIndex: =3
+

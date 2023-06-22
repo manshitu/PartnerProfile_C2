@@ -1,0 +1,89 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Concurrent(
+            Set(
+                StepsPanelCodeFontSize,
+                10
+            ),
+            Set(
+                _selectedTutorial,
+                {
+                    Row: 1,
+                    Title: "Home",
+                    Image: HomeIcon
+                }
+            ),
+            ClearCollect(
+                NavigationMenu,
+                {
+                    Row: 1,
+                    Title: "Home",
+                    Image: HomeIcon
+                },
+                {
+                    Row: 2,
+                    Title: "Add Partner Details",
+                    Image: PeopleIcon
+                },
+                {
+                    Row: 3,
+                    Title: "Planner",
+                    Image: PlannerLogo
+                },
+                {
+                    Row: 4,
+                    Title: "Outlook",
+                    Image: OutlookLogo16
+                },
+                {
+                    Row: 5,
+                    Title: "OneNote",
+                    Image: OneNoteLogo16
+                },
+                {
+                    Row: 6,
+                    Title: "Pop-up lightbox",
+                    Image: PopUpIcon
+                }
+            ),
+            ClearCollect(
+                ParterDetailsTabs,
+                {
+                    Row: 1,
+                    Title: "Partner Details"
+                },
+                {
+                    Row: 2,
+                    Title: "Brand Details"
+                },
+                {
+                    Row: 3,
+                    Title: "Dealer Enrolment"
+                },
+                {
+                    Row: 4,
+                    Title: "IT System/Offerings"
+                },
+                {
+                    Row: 5,
+                    Title: "Standard Transfer & Cancellations"
+                },
+                {
+                    Row: 6,
+                    Title: "Call center SLA"
+                },
+                {
+                    Row: 7,
+                    Title: "Account Info"
+                }
+            )
+        )
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+
